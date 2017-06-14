@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="css/videoplayer.css" type="text/css" media="screen" />
+<?php
+$src = $_GET['src'];
+
+?>
+<center>
+<div style="position: relative; width: 85%; height: 80vh; margin: auto; margin-top: 10px;" id="vplayer" onmouseover="show_controlls()"><video id="video1" width="100%" preload="true" onclick="playPause()" max-width="100%"><source src="<?php echo $src; ?>">Your browser does not support HTML5 video.</video><div id="controls" onmouseover="backblur()" onmouseleave="unbackblur()"><table style="width: 100%; border-collapse: collapse; margin-left: -1px; position: relative;" border="0"><tr><td><button onclick="playPause()" id="vplay" class="vbutton"></button><span id="v_duration">0:00</span></td><td><input type="range" onchange="setVideoVolume(this.value)" class="videoaudio_range"  id="video_rngVolume" min="0" max="1" step="0.1" value="1"></td><td width="100%" align="center"><input type="range" onchange="set_time()" class="video_range" id="rngtimeline" min="0" max="1" step="0.1" value="1"></td><td align="right"><button type="button" id="full-screen" class="fullscreenbt" style="border-radius: 0px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; margin-right: -2px;"></button></td></tr></table></div></div></center><script src="videoplayer.js"></script>

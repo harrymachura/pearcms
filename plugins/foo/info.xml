@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+	<name>Foo Plugin</name>
+	<version>1.8</version>
+	<pearversion>0.5</pearversion>
+	<developer>Harry Machura</developer>
+	<website>www.codeveloper.de</website>
+	<mail>info@codeveloper.de</mail>
+</plugin>
