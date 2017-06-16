@@ -774,6 +774,18 @@ However, delay the fade out process for 2.5 seconds */
 	margin-right: auto;
 	margin-bottom: 5px;
 }
+.plugin_container .delete_bt{
+	background-color: rgba(130, 20, 20,.7);
+ color: white;
+}
+.plugin_container .activate_bt:hover{
+ background-color: rgba(130, 20, 20,.7);
+ color: white;
+}
+.plugin_container .deactivate_bt:hover{
+	background-color: rgba(20, 130, 37,.7);
+	
+}
 @media only screen and (max-width: 1200px) {
 	#drop-nav{
 		background-position: right;

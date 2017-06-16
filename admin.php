@@ -90,47 +90,58 @@ if (isset($_GET['search'])) {
     <h1 style="text-align: center;">Plugins</h1>
 
     <?php
-    $dirHandle = dir("plugins");
- 
-    // Verzeichnis Datei für Datei lesen
-    while (($f = $dirHandle->read()) != false) {
-       // Nur ausgeben, wenn nicht . oder ..
-        if ($f != "." && $f != ".."){
-            // Wenn es sich um ein Verzeichnis handelt
-            if (!is_dir("files/".$f)){
-              $xml=simplexml_load_file("plugins/".$f."/info.xml");
-              ?>
-              <table class="plugin_container">
-                <tr>
-                  <td><img src="<?php echo "plugins/".$f."/thumb.png" ?>"></td>
-                  <td>
-                    <table>
-                      <tr>
-                        <td>Name:</td><td><?php echo $xml->name; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Version:</td><td><?php echo $xml->version; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Entwickler:</td><td><?php echo $xml->developer; ?></td>
-                      </tr>
-                      <tr>
-                        <td>Website:</td><td><?php echo $xml->website; ?></td>
-                      </tr>
-                      <tr>
-                        <td>E-Mail:</td><td><?php echo $xml->mail; ?></td>
-                      </tr>
-                      <tr><td></td><td><button>deaktivieren</button> <button>löschen</button></td></tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-              <?php
-            }
+
+
+
+
+    include('classes/plugins_frm.php');
+      
+      
+
+    ?>
+    <script type="text/javascript">
+        function show_notify(val) {
+        // Get the snackbar DIV
+        var x = document.getElementById("notify")
+        x.innerHTML = val;
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         }
-    }
-    // Verzeichnis wieder schließen
-    $dirHandle->close();
+
+        function deactive_plugin(src) {
+          
+        var xhttp = new XMLHttpRequest();
+
+        var url = "classes/plugins_frm.php";
+        var params = "deactive_plugin=" + src.value;
+        xhttp.open("POST", url, true);
+        //Send the proper header information along with the request
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.setRequestHeader("Content-length", params.length);
+        xhttp.setRequestHeader("Connection", "close");
+
+        xhttp.onreadystatechange = function() {//Call a function when the state changes.
+          if(xhttp.readyState == 4 && xhttp.status == 200) {
+            show_notify(xhttp.responseText);
+            if (src.innerHTML == 'Deaktivieren') {
+              src.innerHTML = "Aktivieren";
+              src.className = "deactivate_bt";
+            } else {
+              src.innerHTML = "Deaktivieren";
+              src.className = "activate_bt";
+            }
+            
+
+          }
+        }
+        xhttp.send(params);
+        }
+    </script>
+
+    <?php
   }
 }
 }

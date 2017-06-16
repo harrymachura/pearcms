@@ -1,7 +1,7 @@
 <?php
 class sqlite_db extends SQLite3
 {
-    function __construct()
+    public function __construct()
     {
     	include("config.php");
         $this->open($database_path);
