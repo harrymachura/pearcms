@@ -27,15 +27,15 @@ $result_array = $result->fetchArray();
 <form>
 <input type="text" class="search" name="search" />
 </form>
-<script src="script/dropdown_menu.js"></script>
 <div class="rep_nav">
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"></button>
-  <div id="myDropdown" class="dropdown-content">
+<div class="menu_btn" onmouseleave="clear_menu()" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
+<script src="script/dropdown_menu.js"></script>
+  </div>
+<div id="menu_content">
 <?php
 echo $navigation;
 ?>
-  </div>
+</div>
 </div>
 <form>
 <input type="text" class="search_rep" name="search" />

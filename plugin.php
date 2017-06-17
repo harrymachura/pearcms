@@ -32,7 +32,14 @@ while (($f = $dirHandle->read()) != false) {
     if ($f != "." && $f != ".."){
         // Wenn es sich um ein Verzeichnis handelt
         if (!is_dir("files/".$f)){
-            include('plugins/'.$f."/plugin.php");
+            //Überprüfe ob das Plugin aktiviert ist
+            $check_plugin = $db->query("SELECT * FROM plugins WHERE name = '$f'");
+            $check_arr = $check_plugin->fetchArray();
+                //Wenn das Plugin aktiviert ist dann schließe es mit ein.
+            if ($check_arr['active'] == 0) {
+                include('plugins/'.$f."/plugin.php");
+            }
+            
         }
     }
 }

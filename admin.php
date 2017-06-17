@@ -26,14 +26,13 @@ rep_logo(); ?>
 </form>
 <script src="script/dropdown_menu.js"></script>
 <div class="rep_nav">
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn"></button>
-  <div id="myDropdown" class="dropdown-content">
+<div class="menu_btn" onmouseleave="clear_menu()" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
+<script src="script/dropdown_menu.js"></script>
+  </div>
+<div id="menu_content">
 <?php
-//Navigationsmenü für Mobile Ansicht
 echo $navigation;
 ?>
-  </div>
 </div>
 <form>
 <input type="text" class="search_rep" name="search" />
@@ -90,16 +89,21 @@ if (isset($_GET['search'])) {
     <h1 style="text-align: center;">Plugins</h1>
 
     <?php
-
-
-
-
     include('classes/plugins_frm.php');
       
       
 
     ?>
     <script type="text/javascript">
+        function show_pop(){
+          document.getElementById('popup_bg').style.visibility = "visible";
+          document.getElementById('popup_bg').style.opacity = "1";
+        }
+        function close_pop(){
+         var popup = document.getElementById('popup_bg');
+         document.getElementById('popup_bg').style.opacity = "0";
+         popup.style.visibility = "hidden";
+        }
         function show_notify(val) {
         // Get the snackbar DIV
         var x = document.getElementById("notify")
@@ -148,7 +152,7 @@ if (isset($_GET['search'])) {
 ?>
 </div>
 </div>
-<?php echo $footer; ?>
+<?php echo event('footer', $footer ); ?>
 <?php 
 if(isset($_SESSION['userid'])) {
 include('classes/admin_panel.php');

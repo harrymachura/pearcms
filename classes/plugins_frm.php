@@ -25,7 +25,15 @@ if (isset($_POST['deactive_plugin'])){
        // 
     } else {
     	$dirHandle = dir("plugins");
- 
+ ?>
+
+              <div class="popup_bg" id="popup_bg">
+                <div class="popup_frm">Test
+                <button onclick="close_pop()" style="position: absolute; right: 5px; top: 5px; height: 22px; width: 22px; font-size: 14px;">X</button>
+                </div>
+              </div>
+
+ <?php
     // Verzeichnis Datei für Datei lesen
     while (($f = $dirHandle->read()) != false) {
        // Nur ausgeben, wenn nicht . oder ..
@@ -34,9 +42,10 @@ if (isset($_POST['deactive_plugin'])){
             if (!is_dir("files/".$f)){
               $xml=simplexml_load_file("plugins/".$f."/info.xml");
               ?>
+
               <table class="plugin_container">
                 <tr>
-                  <td><img src="<?php echo "plugins/".$f."/thumb.png" ?>"></td>
+                  <td align="center"><img src="<?php echo "plugins/".$f."/thumb.png" ?>"></td>
                   <td>
                     <table>
                       <tr>
@@ -49,7 +58,7 @@ if (isset($_POST['deactive_plugin'])){
                         <td>Entwickler:</td><td><?php echo $xml->developer; ?></td>
                       </tr>
                       <tr>
-                        <td>Website:</td><td><?php echo $xml->website; ?></td>
+                        <td>Website:</td><td><a href="http://<?php echo $xml->website; ?>" target="_blank"><?php echo $xml->website; ?></a></td>
                       </tr>
                       <tr>
                         <td>E-Mail:</td><td><?php echo $xml->mail; ?></td>
@@ -81,7 +90,7 @@ if (isset($_POST['deactive_plugin'])){
                       ?>
                       <tr><td></td><td><button name="deactive_plugin" <?php echo $css_class; ?> onclick="deactive_plugin(this)" value="<?php echo $f; ?>"><?php 
                       	  echo $visible;
-                          ?></button> <button class="delete_bt">löschen</button></td></tr>
+                          ?></button> <button class="delete_bt" onclick="show_pop(this)" value="<?php echo $f; ?>">löschen</button></td></tr>
                     </table>
                   </td>
                 </tr>

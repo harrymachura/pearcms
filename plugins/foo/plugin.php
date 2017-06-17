@@ -1,5 +1,5 @@
 <?php
-event('post_content', NULL, function($src) { 
-  return $src;
+event('footer', NULL, function($src) { 
+  return "<center>Test</center>".$src;
 });
 ?>
