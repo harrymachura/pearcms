@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET['login'])) {
       //Überprüfe ob der Benutzername größer als 4 Zeichen ist und das Passwort größer als 6 Zeichen ist. 
-      if (strlen($_POST['user']) > 4 && strlen($_POST['password']) > 6) {
+      if (strlen($_POST['user']) > 3 && strlen($_POST['password']) > 6) {
         $username = $_POST['user'];
         $password = $_POST['password'];
         $get_logindata = $db->query("SELECT * FROM users WHERE username = '".$username."'");
@@ -13,18 +13,18 @@ if(isset($_GET['login'])) {
 
             $_SESSION['userid'] = $row['id'];
             ?>
-            <p align="center" style="font-size: 32px;">Login erfolgreich!</p>
-            <p align="center">Du wirst in 3 Sekunden automatisch umgeleitet.</p>
+            <p align="center" style="font-size: 32px;"><?php echo $login_successful; ?></p>
+            <p align="center"><?php echo $redirect_in_seconds; ?></p>
             <meta http-equiv="refresh" content="3; URL=admin.php">
             <?php
           } else {
-            echo '<h2 style="text-align: center;">Login fehlgeschlagen!</h2>';
+            echo '<h2 style="text-align: center;">'.$login_failed.'</h2>';
           }
         } else {
-          echo '<h2 style="text-align: center;">Login fehlgeschlagen!</h2>';
+          echo '<h2 style="text-align: center;">'.$login_failed.'</h2>';
         }
       } else {
-        echo '<h2 style="text-align: center;">Login fehlgeschlagen!</h2>';
+        echo '<h2 style="text-align: center;">'.$login_failed.'</h2>';
       }
           
   } else {
@@ -37,10 +37,10 @@ if(isset($_GET['login'])) {
         <td align="center"><div class="avatar"></div></td>
       </tr>
       <tr>
-        <td align="center"><input type="text" name="user" placeholder="Benutzername..."></td>
+        <td align="center"><input type="text" name="user" placeholder="<?php echo $username_placeholder; ?>"></td>
       </tr>
         <tr>
-        <td align="center"><input type="password" name="password" placeholder="Passwort..."></td>
+        <td align="center"><input type="password" name="password" placeholder="<?php echo $password_placeholder; ?>"></td>
       </tr>
       <tr>
         <td align="center"><button>Login</button></td>

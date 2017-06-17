@@ -26,7 +26,7 @@ rep_logo(); ?>
 </form>
 <script src="script/dropdown_menu.js"></script>
 <div class="rep_nav">
-<div class="menu_btn" onmouseleave="clear_menu()" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
+<div class="menu_btn" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
 <script src="script/dropdown_menu.js"></script>
   </div>
 <div id="menu_content">
@@ -84,66 +84,30 @@ if (isset($_GET['search'])) {
   include('classes/admin_page.php');
 
   //Plugins auflisten
-  if (isset($_GET['plugins'])){
+  include('classes/list_plugins.php');
+
+  if (isset($_GET['users'])) {
     ?>
     <h1 style="text-align: center;">Plugins</h1>
-
     <?php
-    include('classes/plugins_frm.php');
-      
-      
-
+    $get_users = $db->query("SELECT * FROM users");
     ?>
-    <script type="text/javascript">
-        function show_pop(){
-          document.getElementById('popup_bg').style.visibility = "visible";
-          document.getElementById('popup_bg').style.opacity = "1";
-        }
-        function close_pop(){
-         var popup = document.getElementById('popup_bg');
-         document.getElementById('popup_bg').style.opacity = "0";
-         popup.style.visibility = "hidden";
-        }
-        function show_notify(val) {
-        // Get the snackbar DIV
-        var x = document.getElementById("notify")
-        x.innerHTML = val;
-        // Add the "show" class to DIV
-        x.className = "show";
-
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-        }
-
-        function deactive_plugin(src) {
-          
-        var xhttp = new XMLHttpRequest();
-
-        var url = "classes/plugins_frm.php";
-        var params = "deactive_plugin=" + src.value;
-        xhttp.open("POST", url, true);
-        //Send the proper header information along with the request
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.setRequestHeader("Content-length", params.length);
-        xhttp.setRequestHeader("Connection", "close");
-
-        xhttp.onreadystatechange = function() {//Call a function when the state changes.
-          if(xhttp.readyState == 4 && xhttp.status == 200) {
-            show_notify(xhttp.responseText);
-            if (src.innerHTML == 'Deaktivieren') {
-              src.innerHTML = "Aktivieren";
-              src.className = "deactivate_bt";
-            } else {
-              src.innerHTML = "Deaktivieren";
-              src.className = "activate_bt";
-            }
-            
-
-          }
-        }
-        xhttp.send(params);
-        }
-    </script>
+    <table align="center" class="user_list">
+    <tr><td><b>Benutzer</b></td><td><b>Name</b></td><td><b>E-Mail</b></td><td><b>Gruppe</b></td></tr>
+    <?php
+    function get_group($id){
+      $db = new SQLite3('database/db.sqlite');
+      $get_group_name = $db->query("SELECT * FROM groups WHERE id = '$id'");
+      $arr = $get_group_name->fetchArray();
+      return $arr['name'];
+    }
+    while ($row = $get_users->fetchArray()) {
+      ?>
+      <tr><td><?php echo $row['username']; ?><br><a href="?edit_user=<?php echo $row['username']; ?>"><button>Bearbeiten</button></a> <a href="?delete_user=<?php echo $row['username']; ?>"><button>Löschen</button></a></td><td><?php echo $row['display_name']; ?></td><td><?php echo $row['mail']; ?></td><td><?php echo get_group($row['group']); ?></td></tr>
+      <?php
+    }
+    ?>
+    </table>
 
     <?php
   }

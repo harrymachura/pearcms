@@ -1,7 +1,7 @@
 <?php
-
 function search($query) {
-
+	include('config.php');
+	include('language/'.$language.'.php');
 		class MyDBsearch extends SQLite3
 	{
 	    function __construct()
@@ -10,7 +10,7 @@ function search($query) {
 	    }
 	}
 
-	echo '<p style="font-size: 26px; text-align: center;">Du hast nach „<b>'.$query.'</b>“ gesucht.</p>';
+	echo '<p style="font-size: 26px; text-align: center;">'.$youhave.' „<b>'.$query.'</b>“ '.$searched.'.</p>';
 	$db = new MyDBsearch();
 	$result = $db->query("SELECT * FROM posts WHERE keywords LIKE '%$query%' OR title LIKE '%$query%' OR content LIKE '%$query%' OR author LIKE '%$query%' OR date LIKE '%$query%'  ORDER BY id DESC");
   	//$row = $result->fetchArray();
@@ -25,6 +25,6 @@ function search($query) {
 </div><br>';
 }
 	
-	echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">Zurück</a>';
+	echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">'.$back.'</a>';
 }
 ?>

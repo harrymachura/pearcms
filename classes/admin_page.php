@@ -11,7 +11,7 @@ if (empty($_GET) and empty($_POST))
          
         $result = $db->query("SELECT * FROM users WHERE id = '".$userid."'");
         $row = $result->fetchArray();
-        echo "<h3>Willkommen ".$row['username']."</h3>";
+        echo "<h3>".$welcome." ".$row['username']."</h3>";
     }
 ?>
 

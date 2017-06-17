@@ -1,4 +1,6 @@
 <?php
+	include('config.php');
+	include('language/'.$language.'.php');
 $add_nav = "";
 $get_nav_sites = $db->query("SELECT * FROM pages");
 
@@ -12,6 +14,6 @@ while ($row = $get_nav_sites->fetchArray()) {
   }
   
 }
-$navigation = '<li><a href="./">Start</a></li>
-  <li><a href="posts">Beiträge</a></li>' . $add_nav;
+$navigation = '<li><a href="./">'.$start.'</a></li>
+  <li><a href="posts">'.$posts.'</a></li>' . $add_nav;
 ?>

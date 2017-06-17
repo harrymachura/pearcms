@@ -634,7 +634,7 @@ However, delay the fade out process for 2.5 seconds */
     position: fixed;
     z-index: 3;
     width: 300px;
-    background-color: rgba(0,0,0,.85);
+    background-color: rgba(42, 48, 58,.95);
     opacity: 0;
     border: solid;
     border-width: 0px;
@@ -685,7 +685,7 @@ However, delay the fade out process for 2.5 seconds */
   #open_panel_bt{
     width: 48px;
     height: 48px;
-    background-color: rgba(255,255,255,.2);
+    background-color: rgba(0,0,0,.2);
     position: fixed;
     bottom: 32px;
     left: 32px;
@@ -823,7 +823,7 @@ However, delay the fade out process for 2.5 seconds */
     left: 3px;
     width: 32px;
     border: solid;
-    border-width: 1px;
+    border-width: 0px;
     padding: 4px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -835,6 +835,7 @@ However, delay the fade out process for 2.5 seconds */
     background-color: rgba(0,0,0,0.4);
   }
   .menu_btn hr{
+  	width: 50%;
     border: solid;
     border-top-width: 0px;
     border-bottom-width: 1px;
@@ -843,7 +844,7 @@ However, delay the fade out process for 2.5 seconds */
   }
   .a{
     position: relative;
-    transform: rotate(45deg);
+    transform: rotate(135deg);
     top: 3px;
     transition: all 0.3s ease-in-out;
   }
@@ -851,8 +852,8 @@ However, delay the fade out process for 2.5 seconds */
     position: relative;
     z-index: 2;
     background-color: rgba(255,255,255,.6);
-    transform: rotate(-45deg);
-    top: -5px;
+    transform: rotate(-135deg);
+    top: -6px;
     transition: all 0.3s ease-in-out;
   }
   .a_clear{
@@ -874,8 +875,9 @@ However, delay the fade out process for 2.5 seconds */
 	font-size: 32px;
 	width: 80%;
 	height: 98vh;
-	background-color: rgba(50,50,50,.95);
+	background-color: rgba(42, 48, 58,.95);
 	visibility: hidden;
+	opacity: 0;
 	color: white;
 	list-style: none;
 	padding-left: 10px;
@@ -883,12 +885,22 @@ However, delay the fade out process for 2.5 seconds */
 	border:solid;
 	border-width: 0px;
 	border-right-width: 1px;
+	border-color: rgba(32, 38, 48,.95);
 	z-index: 3;
 	transition: all 0.4s ease-in-out;
+}
+#menu_content li{
+	width: 90%;
+	border: solid;
+	border-width: 0px;
+	border-bottom-width: 1px;
+	margin-bottom: 10px;
+	border-color: rgba(255,255,255,.5);
 }
 #menu_content a{
 	text-decoration: none;
 }
+
 #menu_content a:visited{
 	color:white;
 }
@@ -897,9 +909,24 @@ However, delay the fade out process for 2.5 seconds */
 }
 #menu_content a:hover{
 	color: white;
+	background-color: initial;
 }
 .search_rep{
 	display: none;
+}
+
+.user_list{
+	width: 90%;
+	font-size: 22px;
+	padding: 20px;
+}
+.user_list td{
+	padding: 10px;
+	background-color: rgba(255,255,255,.5);
+}
+.user_list button{
+	font-size: 14px;
+	padding: 3px;
 }
 @media only screen and (max-width: 1200px) {
 	#drop-nav{
@@ -933,7 +960,7 @@ However, delay the fade out process for 2.5 seconds */
 	width: 32px;
 	z-index: 3;
 	border: solid;
-	border-width: 1px;
+	border-width: 0px;
 	border-color: white;
 	border-radius: 5px;
 	background-color: rgba(0,0,0,0.6);

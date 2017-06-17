@@ -22,7 +22,7 @@
 </form>
 <script src="script/dropdown_menu.js"></script>
 <div class="rep_nav">
-<div class="menu_btn" onmouseleave="clear_menu()" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
+<div class="menu_btn" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
 <script src="script/dropdown_menu.js"></script>
   </div>
 <div id="menu_content">

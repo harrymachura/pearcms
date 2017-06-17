@@ -6,7 +6,7 @@ if (isset($_GET['new_site'])){
         $result = $db->query("SELECT * FROM users WHERE id = '".$userid."'");
         $row = $result->fetchArray();
     ?>
-    <p align="center" style="font-size: 32px;">Neue Seite</p>
+    <p align="center" style="font-size: 32px;"><?php echo $new_site; ?></p>
     <div class="new_note">
     <script src="codesnippet.js"></script>
     <script src="upload.js"></script>

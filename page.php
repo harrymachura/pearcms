@@ -28,7 +28,7 @@ $result_array = $result->fetchArray();
 <input type="text" class="search" name="search" />
 </form>
 <div class="rep_nav">
-<div class="menu_btn" onmouseleave="clear_menu()" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
+<div class="menu_btn" onclick="rotate()" id="menu"><hr id="a"><hr id="b"></div>
 <script src="script/dropdown_menu.js"></script>
   </div>
 <div id="menu_content">
@@ -59,7 +59,7 @@ if (isset($_GET['search'])) {
 <h1 style="text-align: center; padding: 0; margin: 0;"><?php echo $result_array['title']; ?></h1>
 <?php 
 if(isset($_SESSION['userid'])) {
-    $edit = '<div style="text-align: center; padding-bottom: 10px; position: relativ;"><a href="admin.php?edit_site='.$site.'">[Bearbeiten]</a><a href="admin.php?delete_site='.$site.'">[Löschen]</a></div>';
+    $edit = '<div style="text-align: center; padding-bottom: 10px; position: relativ;"><a href="admin.php?edit_site='.$site.'">['.$edit.']</a><a href="admin.php?delete_site='.$site.'">['.$delete.']</a></div>';
     echo $edit;
   }
 ?>
