@@ -9,6 +9,8 @@ class MyDB extends SQLite3
 }
 $db = new MyDB();
 if (isset($_POST['site_title'])){
+	include('../config.php');
+	include('../language/'.$language.'.php');
 	try {
 		$site_title = $_POST['site_title'];
 		$site_description = $_POST['site_description'];
@@ -16,7 +18,7 @@ if (isset($_POST['site_title'])){
 		$theme = $_POST['theme'];
 		$start_page = $_POST['start_page'];
 		$save_exec = $db->exec("UPDATE options SET site_name='".$site_title."', site_description='".$site_description."', admin_mail='".$admin_mail."', start_site='".$start_page."', theme='".$theme."'");
-		echo "Gespeichert!";
+		echo language::saved;
 	} catch (Exception $e) {
 		echo $e;
 	}

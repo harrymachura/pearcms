@@ -20,11 +20,10 @@ if (isset($_GET['public_site'])) {
         $db->exec('INSERT INTO pages (title, author, date, content, keywords) VALUES ("'.$site_title.'","'.$site_author.'","'.$site_date.'","'.$site_content.'","'.$site_keywords.'")');
         $lastid = $db->lastInsertRowid();
         echo '<meta http-equiv="refresh" content="0; URL='.$site_title.'">';
-        echo 'Seite erstellt.';
         echo $pass_check;
       } else {
-        echo '<p style="font-size: 32px;" align="center">Bitte gebe einen Titel ein!</p>';
-        echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">Zurück</a>';
+        echo '<p style="font-size: 32px;" align="center">'.language::please_insert_a_title.'</p>';
+        echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">'.language::back.'</a>';
       }
 }
 ?>

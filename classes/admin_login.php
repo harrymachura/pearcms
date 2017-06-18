@@ -13,18 +13,18 @@ if(isset($_GET['login'])) {
 
             $_SESSION['userid'] = $row['id'];
             ?>
-            <p align="center" style="font-size: 32px;"><?php echo $login_successful; ?></p>
-            <p align="center"><?php echo $redirect_in_seconds; ?></p>
+            <p align="center" style="font-size: 32px;"><?php echo language::login_successful; ?></p>
+            <p align="center"><?php echo language::redirect_in_seconds; ?></p>
             <meta http-equiv="refresh" content="3; URL=admin.php">
             <?php
           } else {
-            echo '<h2 style="text-align: center;">'.$login_failed.'</h2>';
+            echo '<h2 style="text-align: center;">'.language::login_failed.'</h2>';
           }
         } else {
-          echo '<h2 style="text-align: center;">'.$login_failed.'</h2>';
+          echo '<h2 style="text-align: center;">'.language::login_failed.'</h2>';
         }
       } else {
-        echo '<h2 style="text-align: center;">'.$login_failed.'</h2>';
+        echo '<h2 style="text-align: center;">'.language::login_failed.'</h2>';
       }
           
   } else {
@@ -37,10 +37,10 @@ if(isset($_GET['login'])) {
         <td align="center"><div class="avatar"></div></td>
       </tr>
       <tr>
-        <td align="center"><input type="text" name="user" placeholder="<?php echo $username_placeholder; ?>"></td>
+        <td align="center"><input type="text" name="user" placeholder="<?php echo language::username_placeholder; ?>"></td>
       </tr>
         <tr>
-        <td align="center"><input type="password" name="password" placeholder="<?php echo $password_placeholder; ?>"></td>
+        <td align="center"><input type="password" name="password" placeholder="<?php echo language::password_placeholder; ?>"></td>
       </tr>
       <tr>
         <td align="center"><button>Login</button></td>

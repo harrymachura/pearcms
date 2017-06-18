@@ -16,8 +16,8 @@ if (isset($_POST['pub_note'])){
         $lastid = $db->lastInsertRowid();
         echo '<meta http-equiv="refresh" content="0; URL=posts?id='.$lastid.'">';
       } else {
-        echo '<p style="font-size: 32px;" align="center">Bitte gebe einen Titel ein!</p>';
-        echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">Zurück</a>';
+        echo '<p style="font-size: 32px;" align="center">'.language::please_insert_a_title.'</p>';
+        echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">'.language::back.'</a>';
       }
   }
 ?>

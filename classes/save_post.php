@@ -10,11 +10,11 @@ if (isset($_GET['save_note'])) {
     
       if (strlen($note_title) > 0) {
       $db->exec("UPDATE posts SET title = '$note_title', content = '$note_content', keywords = '$note_keywords', date = '$note_date' WHERE id = '$note_id'");
-        echo '<p align="center" style="font-size: 32px;">Notiz gespeichert!</p>';
+        echo '<p align="center" style="font-size: 32px;">'.language::post_saved.'</p>';
         echo '<meta http-equiv="refresh" content="2; URL=posts?id='.$note_id.'">';
       } else {
-        echo '<p style="font-size: 32px;" align="center">Bitte gebe einen Titel ein!</p>';
-        echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">Zurück</a>';
+        echo '<p style="font-size: 32px;" align="center">'.language::please_insert_a_title.'</p>';
+        echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">'.language::back.'</a>';
       }
   }
 ?>

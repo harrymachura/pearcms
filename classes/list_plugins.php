@@ -46,10 +46,10 @@ if (isset($_GET['plugins'])){
           if(xhttp.readyState == 4 && xhttp.status == 200) {
             show_notify(xhttp.responseText);
             if (src.className == 'activate_bt') {
-              src.innerHTML = "<?php echo $activate; ?>";
+              src.innerHTML = "<?php echo language::activate; ?>";
               src.className = "deactivate_bt";
             } else {
-              src.innerHTML = "<?php echo $deactivate; ?>";
+              src.innerHTML = "<?php echo language::deactivate; ?>";
               src.className = "activate_bt";
             }
             

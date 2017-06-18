@@ -14,6 +14,6 @@ while ($row = $get_nav_sites->fetchArray()) {
   }
   
 }
-$navigation = '<li><a href="./">'.$start.'</a></li>
-  <li><a href="posts">'.$posts.'</a></li>' . $add_nav;
+$navigation = '<li><a href="./">'.language::start.'</a></li>
+  <li><a href="posts">'.language::posts.'</a></li>' . $add_nav;
 ?>

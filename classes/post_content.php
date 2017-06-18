@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
   $author_arr = $db->query("SELECT * FROM users WHERE id = '$author_id'");
   $author = $author_arr->fetchArray();
   if(isset($_SESSION['userid'])) {
-    $edit = '<a href="admin.php?edit_note='. $row['id'] .'">[Bearbeiten]</a><a href="admin.php?delete_note='. $row['id'] .'">[Löschen]</a>';
+    $edit = '<a href="admin.php?edit_note='. $row['id'] .'">['.language::edit.']</a><a href="admin.php?delete_note='. $row['id'] .'">['.language::delete.']</a>';
   }
   echo '<table width="100%">';
   echo '<tr><td align="center"><h2 style="text-align: center;">'. $row['title'] .'</h2>'. $edit .'</td></tr>';
@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
     while ($row = $result->fetchArray()) {
         $edit = "";
       if(isset($_SESSION['userid'])) {
-        $edit = '<div style="font-size: 14px;"><a href="admin.php?edit_note='.$row['id'].'">[Bearbeiten]</a><a href="admin.php?delete_note='.$row['id'].'">[Löschen]</a><div>';
+        $edit = '<div style="font-size: 14px;"><a href="admin.php?edit_note='.$row['id'].'">['.language::edit.']</a><a href="admin.php?delete_note='.$row['id'].'">['.language::delete.']</a><div>';
       }
       $author_id = $row['author'];
       $author_arr = $db->query("SELECT * FROM users WHERE id = '$author_id'");
@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
     </div><br>';
           }
   } else {
-    echo '<h2 style="text-align: center;">Keine Beiträge vorhanden!</h2>';
+    echo '<h2 style="text-align: center;">'.language::no_posts_available.'</h2>';
   }
     }
 }

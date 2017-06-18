@@ -59,8 +59,8 @@ if (isset($_GET['search'])) {
 <h1 style="text-align: center; padding: 0; margin: 0;"><?php echo $result_array['title']; ?></h1>
 <?php 
 if(isset($_SESSION['userid'])) {
-    $edit = '<div style="text-align: center; padding-bottom: 10px; position: relativ;"><a href="admin.php?edit_site='.$site.'">['.$edit.']</a><a href="admin.php?delete_site='.$site.'">['.$delete.']</a></div>';
-    echo $edit;
+    $edit_ = '<div style="text-align: center; padding-bottom: 10px; position: relativ;"><a href="admin.php?edit_site='.$site.'">['.language::edit.']</a><a href="admin.php?delete_site='.$site.'">['.language::delete.']</a></div>';
+    echo $edit_;
   }
 ?>
 <?php echo event('post_content', $result_array['content']); 

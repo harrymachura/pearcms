@@ -9,5 +9,5 @@ include("codesnippet.php");
 include("classes/header.php");
 include("classes/logo.php");
 include('plugin.php');
-include('language/'.$language.'.php');
+//include('language/'.$language.'.php');
 ?>

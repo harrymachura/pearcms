@@ -4,50 +4,50 @@
   <div id="close" onclick="panel_hidde()"></div>
   <div style="height: 32px; line-height: 24px; background-color: rgba(100,100,100,.5); display: block; text-align: center; width: 100%;"><span style="line-height: 32px;">Admin Panel</span></div>
     <div class="panel_group">
-      <div onclick="toggle(this)" class="group_title"><?php echo $posts; ?><span style="float: right;">+</span></div><span class="group_content">
+      <div onclick="toggle(this)" class="group_title"><?php echo language::posts; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?new_note"><?php echo $new_post; ?></a></li>
-        <li><a href=""><?php echo $posts; ?></a></li>
+        <li><a href="admin.php?new_note"><?php echo language::new_post; ?></a></li>
+        <li><a href=""><?php echo language::posts; ?></a></li>
         <?php echo event('admin_panel_post_button', ""); ?>
       </ol>
       </span>
     </div>
     
     <div class="panel_group">
-      <div onclick="toggle(this)" class="group_title"><?php echo $sites; ?><span style="float: right;">+</span></div><span class="group_content">
+      <div onclick="toggle(this)" class="group_title"><?php echo language::sites; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?new_site"><?php echo $new_site; ?></a></li>
-        <li><a href=""><?php echo $sites; ?></a></li>
+        <li><a href="admin.php?new_site"><?php echo language::new_site; ?></a></li>
+        <li><a href=""><?php echo language::sites; ?></a></li>
         <?php echo event('admin_panel_site_button', ""); ?>
       </ol>
       </span>
     </div>
 
     <div class="panel_group">
-      <div onclick="toggle(this)" class="group_title"><?php echo $plugins; ?><span style="float: right;">+</span></div><span class="group_content">
+      <div onclick="toggle(this)" class="group_title"><?php echo language::plugins; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?plugins"><?php echo $show; ?></a></li>
-        <li><a href="#"><?php echo $install; ?></a></li>
+        <li><a href="admin.php?plugins"><?php echo language::show; ?></a></li>
+        <li><a href="#"><?php echo language::install; ?></a></li>
         <?php echo event('admin_panel_plugin_button', ""); ?>
       </ol>
       </span>
     </div>
 
     <div class="panel_group">
-      <div onclick="toggle(this)" class="group_title"><?php echo $settings; ?><span style="float: right;">+</span></div><span class="group_content">
+      <div onclick="toggle(this)" class="group_title"><?php echo language::settings; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?settings"><?php echo $general; ?></a></li>
-        <li><a href=""><?php echo $design; ?></a></li>
+        <li><a href="admin.php?settings"><?php echo language::general; ?></a></li>
+        <li><a href=""><?php echo language::design; ?></a></li>
         <?php echo event('admin_panel_setting_button', ""); ?>
       </ol>
       </span>
     </div> 
 
     <div class="panel_group">
-      <div onclick="toggle(this)" class="group_title"><?php echo $users; ?><span style="float: right;">+</span></div><span class="group_content">
+      <div onclick="toggle(this)" class="group_title"><?php echo language::users; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?users"><?php echo $users; ?></a></li>
-        <li><a href=""><?php echo $groups; ?></a></li>
+        <li><a href="admin.php?users"><?php echo language::users; ?></a></li>
+        <li><a href=""><?php echo language::groups; ?></a></li>
         <?php echo event('admin_panel_user_button', ""); ?>
       </ol>
       </span>

@@ -1,19 +1,19 @@
 <?php
 if(isset($_GET['settings'])){
     ?>
-    <h2 style="text-align: center;">Einstellungen</h2>
+    <h2 style="text-align: center;"><?php echo language::settings; ?></h2>
     <table width="80%" align="center">
       <tr>
-        <td>Seiten Titel</td><td><input type="text" id="site_title" name="site_title" value="<?php echo get_header('title'); ?>"></td>
+        <td><?php echo language::site_title; ?>:</td><td><input type="text" id="site_title" name="site_title" value="<?php echo get_header('title'); ?>"></td>
       </tr>
       <tr>
-        <td>Seitenbeschreibung</td><td><input type="text" id="site_description" name="site_description" value="<?php echo get_header('description'); ?>"></td>
+        <td><?php echo language::site_description; ?>:</td><td><input type="text" id="site_description" name="site_description" value="<?php echo get_header('description'); ?>"></td>
       </tr>
       <tr>
-        <td>E-Mail Adresse</td><td><input type="email" id="admin_mail" name="admin_mail" value="<?php echo get_header('admin_mail'); ?>"></td>
+        <td><?php echo language::e_mail_adress; ?>:</td><td><input type="email" id="admin_mail" name="admin_mail" value="<?php echo get_header('admin_mail'); ?>"></td>
       </tr>
       <tr>
-        <td>Theme</td><td><select id="theme" name="theme">
+        <td><?php echo language::theme; ?>:</td><td><select id="theme" name="theme">
           <?php
           $get_theme = $db->query("SELECT * FROM options WHERE id='1'");
           $get_current_theme = $get_theme->fetchArray();
@@ -30,7 +30,7 @@ if(isset($_GET['settings'])){
           ?>
         </select></td>
       </tr>
-      <tr><td>Startseite:</td><td>
+      <tr><td><?php echo language::startsite; ?>:</td><td>
       <select id="start_page">
       <?php 
       $get_sites = $db->query("SELECT * FROM pages");
@@ -48,7 +48,7 @@ if(isset($_GET['settings'])){
       </select>
       </td></tr>
     </table>
-    <button style="position: relative; display: block; margin-left: auto; margin-right: auto;" onclick="save_settings(this)" value="Gespeichert">Speichern</button>
+    <button style="position: relative; display: block; margin-left: auto; margin-right: auto;" onclick="save_settings(this)" value="Gespeichert"><?php echo language::save; ?></button>
     <script type="text/javascript">
         function show_notify(val) {
         // Get the snackbar DIV
