@@ -89,7 +89,7 @@ if (isset($_GET['search'])) {
 
   if (isset($_GET['users'])) {
     ?>
-    <h1 style="text-align: center;">Plugins</h1>
+    <h1 style="text-align: center;">Benutzer</h1>
     <?php
     $get_users = $db->query("SELECT * FROM users");
     ?>
@@ -116,95 +116,10 @@ if (isset($_GET['search'])) {
                 </div>
     </div>
     <div class="popup_bg" id="user_del">
-                <div class="popup_frm" id="pop_del">
-                
-                </div>
+                <div class="popup_frm" id="pop_del" style="top: 30%;"></div>
     </div>
-    <script type="text/javascript">
-      function create_user(){
-        var xhttp = new XMLHttpRequest();
-        var status = document.getElementById('create_status');
-        status.style.animation = "fadein 1s";
-        var username = document.getElementById('username').value;
-        var display_name = document.getElementById('name').value;
-        var mail = document.getElementById('mail').value;
-        var password = document.getElementById('password').value;
-        var group = document.getElementById('group').value;
-
-        var url = "classes/create_user.php";
-        var params = "create_user&username=" + username + "&display_name=" + display_name + "&mail=" + mail + "&password=" + SHA512(password).toUpperCase() + "&group=" + group;
-        if (password.length > 7) {
-          xhttp.open("POST", url, true);
-          //Send the proper header information along with the request
-          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xhttp.setRequestHeader("Content-length", params.length);
-          xhttp.setRequestHeader("Connection", "close");
-        } else {
-          status.innerHTML = 'Das Passwort muss mindestens 8 Zeichen enthalten!';
-          setTimeout(fadeout_error, 1000);
-        }
-        
-
-        xhttp.onreadystatechange = function() {//Call a function when the state changes.
-          if(xhttp.readyState == 4 && xhttp.status == 200) {
-            switch(xhttp.responseText){
-              case '0':
-                status.innerHTML = '<span style="color: green;">Benutzer erstellt!</span>';
-                setTimeout(fadeout, 1000);
-              break;
-
-              case '1':
-                status.innerHTML = '<span style="color: red;">Die E-Mail ist nicht korrekt!</span>';
-                setTimeout(fadeout_error, 1000);
-              break;
-
-              case '2':
-                status.innerHTML = '<span style="color: red;">Der Benutzername ist zu kurz.</span>';
-                setTimeout(fadeout_error, 1000);
-              break;
-            }
-            
-          }
-        }
-        xhttp.send(params);
-
-        
-      }
-      function fadeout_error(){
-        var status = document.getElementById('create_status');
-        status.style.animation = "fadeout 1s";
-        status.style.opacity = "0";
-      }
-      function fadeout(){
-        var status = document.getElementById('create_status');
-        status.style.animation = "fadeout 1s";
-        status.style.opacity = "0";
-        setTimeout(close_pop,1000);
-        location.reload();
-      }
-      function show_pop(){
-          document.getElementById('popup_bg').style.visibility = "visible";
-          document.getElementById('popup_bg').style.opacity = "1";
-        }
-        function close_pop(){
-         var popup = document.getElementById('popup_bg');
-         document.getElementById('popup_bg').style.opacity = "0";
-         popup.style.visibility = "hidden";
-         
-        }
-        function delete_popup(user_id){
-          document.getElementById('user_del').style.visibility = "visible";
-          document.getElementById('user_del').style.opacity = "1";
-          document.getElementById('pop_del').innerHTML = '<div style="font-size: 22px; padding-bottom: 20px; text-align: center;">Möchtest du wirklich <b>' + user_id.value + '</b> löschen?</div><div style="text-align: center; margin-bottom: 0; position: relativ;"><button style="width: 80px;">Ja</button> <button style="width: 80px;" onclick="close_delete()">Nein</button></div>';
-        }
-
-        function close_delete(){
-          var popup_delete = document.getElementById('user_del');
-          document.getElementById('user_del').style.opacity = "0";
-          popup_delete.style.visibility = "hidden";
-        }
-    </script>
-    <table align="center" class="user_list">
+    <script src="script/users.js"></script>
+    <table align="center" class="user_list" id="user_list">
     <tr><td><b>Benutzer</b></td><td><b>Name</b></td><td><b>E-Mail</b></td><td><b>Gruppe</b></td></tr>
     <?php
     function get_group($id){
@@ -215,7 +130,7 @@ if (isset($_GET['search'])) {
     }
     while ($row = $get_users->fetchArray()) {
       ?>
-      <tr><td><?php echo $row['username']; ?><br><a href="?edit_user=<?php echo $row['username']; ?>"><button>Bearbeiten</button></a> <button onclick="delete_popup(this)" value="<?php echo $row['username']; ?>">Löschen</button></td><td><?php echo $row['display_name']; ?></td><td><?php echo $row['mail']; ?></td><td><?php echo get_group($row['group']); ?></td></tr>
+      <tr id="<?php echo $row['username']; ?>_list"><td><?php echo $row['username']; ?><br><a href="?edit_user=<?php echo $row['username']; ?>"><button>Bearbeiten</button></a> <button onclick="delete_popup(this)" value="<?php echo $row['username']; ?>">Löschen</button></td><td><?php echo $row['display_name']; ?></td><td><?php echo $row['mail']; ?></td><td><?php echo get_group($row['group']); ?></td></tr>
       <?php
     }
     ?>
