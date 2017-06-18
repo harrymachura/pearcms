@@ -63,25 +63,38 @@ body {
 	background-color: rgba(255,255,255,0.5);
 	transition: all 0.3s ease-in-out;
 }
+.site input{
+	transition: all 0.2s ease-in-out;
+	height: 26px;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-size: 16px;
+}
 .site input[type=text]{
 	background-color: rgba(255,255,255,0.5);
 	border: solid;
 	border-width: 1px;
 	border-radius: 5px;
 	border-color: rgba(0,0,0,.4);
-	font-size: 18px;
-	padding: 5px;
 }
-
-.site input[type=email]{
+.site input[type=password]{
+	background-color: rgba(255,255,255,0.5);
+	border: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: rgba(0,0,0,.4);
+}
+.site input[type=mail]{
 	display: inline-block;
 	background-color: rgba(255,255,255,0.5);
 	border: solid;
 	border-width: 1px;
 	border-radius: 5px;
 	border-color: rgba(0,0,0,.4);
-	font-size: 18px;
-	padding: 5px;
+}
+.site input:hover{
+	background-color: rgba(255,255,255,0.8);
 }
 .site select{
 	display: inline-block;
@@ -271,26 +284,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
-/* Login eingabefeld */
-.login input {
-	border:solid;
-	border-width: 1px;
-	border-radius: 5px;
-	border-color: rgba(0,0,0,0.5);
-	height: 32px;
-	padding-left: 5px;
-	background-color: rgba(255,255,255,0.5);
-	font-size: 22px;
-	font-family: "Josefin";
-	transition: all 0.3s ease-in-out;
-	padding: 4px;
-}
-.login input[type=text]{
-	font-size: 22px;
-}
-.login input:hover{
-	background-color: rgba(255,255,255,0.8);
-}
+
 /* Login Button */
 .login button{
 	cursor: pointer;
@@ -807,11 +801,10 @@ However, delay the fade out process for 2.5 seconds */
                   position: relative;
                   margin-left: auto;
                   margin-right: auto;
+                  width: 400px;
                   top: 30%;
-                  width: 300px;
-                  height: 150px;
                   background-color: rgba(255,255,255,.9);
-                  padding: 20px;
+                  padding: 30px;
                   border: solid;
                   border-width: 1px;
                   border-color: white;
@@ -917,11 +910,11 @@ However, delay the fade out process for 2.5 seconds */
 }
 
 .user_list{
-	width: 90%;
+	width: 100%;
 	font-size: 22px;
-	padding: 20px;
 }
 .user_list td{
+	display: table-cell;
 	padding: 10px;
 	background-color: rgba(255,255,255,.5);
 }
