@@ -115,6 +115,11 @@ if (isset($_GET['search'])) {
                 <div id="create_status" style="text-align: center; padding: 10px; font-size: 22px;"></div>
                 </div>
     </div>
+    <div class="popup_bg" id="user_del">
+                <div class="popup_frm" id="pop_del">
+                
+                </div>
+    </div>
     <script type="text/javascript">
       function create_user(){
         var xhttp = new XMLHttpRequest();
@@ -175,6 +180,7 @@ if (isset($_GET['search'])) {
         status.style.animation = "fadeout 1s";
         status.style.opacity = "0";
         setTimeout(close_pop,1000);
+        location.reload();
       }
       function show_pop(){
           document.getElementById('popup_bg').style.visibility = "visible";
@@ -184,7 +190,18 @@ if (isset($_GET['search'])) {
          var popup = document.getElementById('popup_bg');
          document.getElementById('popup_bg').style.opacity = "0";
          popup.style.visibility = "hidden";
-         location.reload();
+         
+        }
+        function delete_popup(user_id){
+          document.getElementById('user_del').style.visibility = "visible";
+          document.getElementById('user_del').style.opacity = "1";
+          document.getElementById('pop_del').innerHTML = '<div style="font-size: 22px; padding-bottom: 20px; text-align: center;">Möchtest du wirklich <b>' + user_id.value + '</b> löschen?</div><div style="text-align: center; margin-bottom: 0; position: relativ;"><button style="width: 80px;">Ja</button> <button style="width: 80px;" onclick="close_delete()">Nein</button></div>';
+        }
+
+        function close_delete(){
+          var popup_delete = document.getElementById('user_del');
+          document.getElementById('user_del').style.opacity = "0";
+          popup_delete.style.visibility = "hidden";
         }
     </script>
     <table align="center" class="user_list">
@@ -198,7 +215,7 @@ if (isset($_GET['search'])) {
     }
     while ($row = $get_users->fetchArray()) {
       ?>
-      <tr><td><?php echo $row['username']; ?><br><a href="?edit_user=<?php echo $row['username']; ?>"><button>Bearbeiten</button></a> <a href="?delete_user=<?php echo $row['username']; ?>"><button>Löschen</button></a></td><td><?php echo $row['display_name']; ?></td><td><?php echo $row['mail']; ?></td><td><?php echo get_group($row['group']); ?></td></tr>
+      <tr><td><?php echo $row['username']; ?><br><a href="?edit_user=<?php echo $row['username']; ?>"><button>Bearbeiten</button></a> <button onclick="delete_popup(this)" value="<?php echo $row['username']; ?>">Löschen</button></td><td><?php echo $row['display_name']; ?></td><td><?php echo $row['mail']; ?></td><td><?php echo get_group($row['group']); ?></td></tr>
       <?php
     }
     ?>
