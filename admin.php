@@ -97,7 +97,7 @@ if (isset($_GET['search'])) {
     <div class="popup_bg" id="popup_bg">
                 <div class="popup_frm">
                 <h2 style="text-align: center; margin: 10px;">Neuer Benutzer</h2>
-                <table>
+                <table width="100%">
                   <tr><td>Benutzername*:</td><td><input type="text" name="username" id="username"></td></tr>
                   <tr><td>Name:</td><td><input type="text" name="name" id="name"></td></tr>
                   <tr><td>E-Mail*:</td><td><input type="mail" name="name" id="mail"></td></tr>
@@ -184,6 +184,7 @@ if (isset($_GET['search'])) {
          var popup = document.getElementById('popup_bg');
          document.getElementById('popup_bg').style.opacity = "0";
          popup.style.visibility = "hidden";
+         location.reload();
         }
     </script>
     <table align="center" class="user_list">
