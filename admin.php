@@ -93,7 +93,7 @@ if (isset($_GET['search'])) {
     <?php
     $get_users = $db->query("SELECT * FROM users");
     ?>
-    <button onclick="show_pop(this)">Neuer Benutzer</button>
+    <button onclick="show_pop(this)">Neuer Benutzer</button><button onclick="test()">Test</button>
     <div class="popup_bg" id="popup_bg">
                 <div class="popup_frm">
                 <h2 style="text-align: center; margin: 10px;">Neuer Benutzer</h2>
@@ -118,6 +118,46 @@ if (isset($_GET['search'])) {
     <div class="popup_bg" id="user_del">
                 <div class="popup_frm" id="pop_del" style="top: 30%;"></div>
     </div>
+
+    <div class="popup_bg" id="user_edit">
+                <div class="popup_frm" id="pop_edit" style="top: 20%;"></div>
+    </div>
+    <script type="text/javascript">
+            function test(){
+            var xhttp = new XMLHttpRequest();
+            var url = "classes/user_function.php";
+            var params = "user_data=demo";
+              xhttp.open("POST", url, true);
+              //Send the proper header information along with the request
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.setRequestHeader("Content-length", params.length);
+              xhttp.setRequestHeader("Connection", "close");        
+
+            xhttp.onreadystatechange = function() {//Call a function when the state changes.
+              if(xhttp.readyState == 4 && xhttp.status == 200) {
+                var str = xhttp.responseText;
+                var res = str.split("|");
+                var id = res[0];
+                var display_name = res[1];
+                var mail = res[2];
+                var group = res[3];
+                var password = res[4];
+
+                document.getElementById('user_edit').style.visibility = "visible";
+              document.getElementById('user_edit').style.opacity = "1";
+
+              document.getElementById('pop_edit').innerHTML = '<h2 style="text-align: center; margin: 0; margin-bottom: 10px;">Benutzer Bearbeiten</h2><table><tr><td>Benutzername:</td><td><input type="text" id="username_edit" value="demo"></td></tr><tr><td>Name:</td><td><input type="text" id="display_name_edit" value="' + display_name + '"></td></tr><tr><td>E-Mail:</td><td><input type="mail" id="mail_edit" value="' + mail + '"></td></tr><tr><td>Gruppe:</td><td><select id="edit_group"><?php
+                      $groups = $db->query("SELECT * FROM groups");
+                      while ($row = $groups->fetchArray()) {
+                        echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+                      }
+                    ?></select></td></tr></table><hr><table><tr><td>Neues Passwort:</td><td><input type="password" id="new_pass"></td></tr><tr><td>Passwort wiederholen:</td><td><input type="password" id="new_pass_re"></td></tr></table>';
+                document.getElementById('edit_group').value = id;
+              }
+            }
+            xhttp.send(params);
+      }
+    </script>
     <script src="script/users.js"></script>
     <table align="center" class="user_list" id="user_list">
     <tr><td><b>Benutzer</b></td><td><b>Name</b></td><td><b>E-Mail</b></td><td><b>Gruppe</b></td></tr>

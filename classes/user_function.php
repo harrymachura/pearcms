@@ -51,4 +51,10 @@ if (isset($_POST['delete_user'])) {
 			}
 }
 
+if (isset($_POST['user_data'])){
+	$username = $_POST['user_data'];
+	$get_data = $db->query("SELECT * FROM users WHERE username = '$username'");
+	$data_array = $get_data->fetchArray();
+	echo $data_array['id']."|".$data_array['display_name']."|".$data_array['mail']."|".$data_array["group"]."|".$data_array['password'];
+}
 ?>
