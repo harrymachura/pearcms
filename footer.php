@@ -1,3 +1,3 @@
 <?php
-$footer = '<div class="footer">Blogsoftware Pear / <a href="admin.php">Login</a></div>';
+$footer = '<div class="footer">pearCMS / <a href="admin.php">Login</a></div>';
 ?>
