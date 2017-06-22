@@ -66,7 +66,7 @@ function create_user(){
         var new_pw = document.getElementById('new_pass');
         var new_pw_re = document.getElementById('new_pass_re');
         var url = "classes/user_function.php";
-        var params = "edit_user=" + user_id.value + "&username=" + username.value + "&display_name=" + display_name.value + "&mail=" + mail.value + "&group=" + group.value + "&new_pw=" + new_pw.value;
+        var params = "edit_user=" + user_id.value + "&username=" + username.value + "&display_name=" + display_name.value + "&mail=" + mail.value + "&group=" + group.value + "&new_pw=" + new_pw.value + "&new_pw_re=" + new_pw_re.value;
           xhttp.open("POST", url, true);
           //Send the proper header information along with the request
           xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -82,7 +82,7 @@ function create_user(){
               break;
 
               case '2':
-                document.getElementById('edit_status').innerHTML = '<span style="color: red; font-size: 22px;">Fehler!</span>';
+                document.getElementById('edit_status').innerHTML = '<span style="color: red; font-size: 18px;">Fehler! Das Passwort stimmt nicht überein!</span>';
                 setTimeout(fadeout_edit_status_error, 1000);
               break;
               default:

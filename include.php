@@ -8,5 +8,5 @@ include("search.php");
 include("codesnippet.php");
 include("classes/header.php");
 include('plugin.php');
-//include('language/'.$language.'.php');
+include("classes/group_permissions.php");
 ?>

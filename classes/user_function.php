@@ -51,13 +51,25 @@ if (isset($_POST['edit_user'])){
 	$mail = $_POST['mail'];
 	$group = $_POST['group'];
 	$new_pw = $_POST['new_pw'];
-
+	$new_pw_re = $_POST['new_pw_re'];
 	try {
-		$db->exec("UPDATE users SET username='".$username."', display_name='".$display_name."', mail='".$mail."', 'group'='".$group."' WHERE id='$user_id'");
+		if (strlen($new_pw) > 7){
+			if ($new_pw == $new_pw_re){
+				$db->exec("UPDATE users SET username='".$username."', display_name='".$display_name."', mail='".$mail."', 'group'='".$group."', password='".strtoupper(hash(SHA512, $new_pw))."' WHERE id='$user_id'");
+				echo "1";
+			} else {
+				echo "2";
+			}
+		} else    {
+			$db->exec("UPDATE users SET username='".$username."', display_name='".$display_name."', mail='".$mail."', 'group'='".$group."' WHERE id='$user_id'");
+			echo "1";
+		}
 
-		echo "1";
+		
+
+		
 	} catch (Exception $e) {
-		echo "2";
+		echo $e;
 	}
 	
 }

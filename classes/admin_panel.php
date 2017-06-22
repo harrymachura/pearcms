@@ -6,17 +6,21 @@
     <div class="panel_group">
       <div onclick="toggle(this)" class="group_title"><?php echo language::posts; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?new_note"><?php echo language::new_post; ?></a></li>
+          <?php
+    if (permission("create_post") == 1){
+  ?><li><a href="admin.php?new_note"><?php echo language::new_post; ?></a></li><?php } ?>
         <li><a href=""><?php echo language::posts; ?></a></li>
         <?php echo event('admin_panel_post_button', ""); ?>
       </ol>
       </span>
     </div>
-    
+
     <div class="panel_group">
       <div onclick="toggle(this)" class="group_title"><?php echo language::sites; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?new_site"><?php echo language::new_site; ?></a></li>
+          <?php
+    if (permission("create_site") == 1){
+  ?><li><a href="admin.php?new_site"><?php echo language::new_site; ?></a></li><?php } ?>
         <li><a href=""><?php echo language::sites; ?></a></li>
         <?php echo event('admin_panel_site_button', ""); ?>
       </ol>
@@ -32,7 +36,9 @@
       </ol>
       </span>
     </div>
-
+    <?php
+      if (permission("edit_settings") == 1){
+    ?>
     <div class="panel_group">
       <div onclick="toggle(this)" class="group_title"><?php echo language::settings; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
@@ -42,7 +48,9 @@
       </ol>
       </span>
     </div> 
-
+    <?php
+    }
+    ?>
     <div class="panel_group">
       <div onclick="toggle(this)" class="group_title"><?php echo language::users; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">

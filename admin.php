@@ -54,6 +54,8 @@ if (isset($_GET['search'])) {
   //Überprüfe ob die Loginform ausgeführt wurde
     include('classes/admin_login.php');
 } else {
+  
+  
   //Wenn es eine Usersession gibt dann gebe folgendes aus:
   include('classes/logout.php');
 
