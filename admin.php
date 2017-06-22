@@ -18,9 +18,6 @@ include('include.php');
 </head>
 <body>
 <div id="notify"></div>
-<?php 
-// Ersetze das Logo
-rep_logo(); ?>
 <form>
 <input type="text" class="search" name="search" />
 </form>
@@ -93,7 +90,7 @@ if (isset($_GET['search'])) {
     <?php
     $get_users = $db->query("SELECT * FROM users");
     ?>
-    <button onclick="show_pop(this)">Neuer Benutzer</button><button onclick="test()">Test</button>
+    <button onclick="show_pop(this)">Neuer Benutzer</button>
     <div class="popup_bg" id="popup_bg">
                 <div class="popup_frm">
                 <h2 style="text-align: center; margin: 10px;">Neuer Benutzer</h2>
@@ -123,10 +120,10 @@ if (isset($_GET['search'])) {
                 <div class="popup_frm" id="pop_edit" style="top: 20%;"></div>
     </div>
     <script type="text/javascript">
-            function test(){
+            function edit_user(user){
             var xhttp = new XMLHttpRequest();
             var url = "classes/user_function.php";
-            var params = "user_data=demo";
+            var params = "user_data=" + user.value;
               xhttp.open("POST", url, true);
               //Send the proper header information along with the request
               xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -142,17 +139,16 @@ if (isset($_GET['search'])) {
                 var mail = res[2];
                 var group = res[3];
                 var password = res[4];
-
                 document.getElementById('user_edit').style.visibility = "visible";
-              document.getElementById('user_edit').style.opacity = "1";
+                document.getElementById('user_edit').style.opacity = "1";
 
-              document.getElementById('pop_edit').innerHTML = '<h2 style="text-align: center; margin: 0; margin-bottom: 10px;">Benutzer Bearbeiten</h2><table><tr><td>Benutzername:</td><td><input type="text" id="username_edit" value="demo"></td></tr><tr><td>Name:</td><td><input type="text" id="display_name_edit" value="' + display_name + '"></td></tr><tr><td>E-Mail:</td><td><input type="mail" id="mail_edit" value="' + mail + '"></td></tr><tr><td>Gruppe:</td><td><select id="edit_group"><?php
-                      $groups = $db->query("SELECT * FROM groups");
-                      while ($row = $groups->fetchArray()) {
-                        echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
-                      }
-                    ?></select></td></tr></table><hr><table><tr><td>Neues Passwort:</td><td><input type="password" id="new_pass"></td></tr><tr><td>Passwort wiederholen:</td><td><input type="password" id="new_pass_re"></td></tr></table>';
-                document.getElementById('edit_group').value = id;
+                document.getElementById('pop_edit').innerHTML = '<h2 style="text-align: center; margin: 0; margin-bottom: 10px;">Benutzer Bearbeiten</h2><table><tr><td>Benutzername:</td><td><input type="text" id="username_edit" value="' + user.value + '"></td></tr><tr><td>Name:</td><td><input type="text" id="display_name_edit" value="' + display_name + '"></td></tr><tr><td>E-Mail:</td><td><input type="mail" id="mail_edit" value="' + mail + '"></td></tr><tr><td>Gruppe:</td><td><select id="edit_group"><?php
+                        $groups = $db->query("SELECT * FROM groups");
+                        while ($row = $groups->fetchArray()) {
+                          echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+                        }
+                      ?></select></td></tr></table><hr><table><tr><td>Neues Passwort:</td><td><input type="password" id="new_pass"></td></tr><tr><td>Passwort wiederholen:</td><td><input type="password" id="new_pass_re"></td></tr></table><center><button onclick="save_edit(this)" value="' + id + '" id="save_edit_bt">Speichern</button> <button onclick="close_edit()">Abbrechen</button></center><br><div id="edit_status" style="text-align: center"></div>';
+                document.getElementById('edit_group').value = group;
               }
             }
             xhttp.send(params);
@@ -170,7 +166,7 @@ if (isset($_GET['search'])) {
     }
     while ($row = $get_users->fetchArray()) {
       ?>
-      <tr id="<?php echo $row['username']; ?>_list"><td><?php echo $row['username']; ?><br><a href="?edit_user=<?php echo $row['username']; ?>"><button>Bearbeiten</button></a> <button onclick="delete_popup(this)" value="<?php echo $row['username']; ?>">Löschen</button></td><td><?php echo $row['display_name']; ?></td><td><?php echo $row['mail']; ?></td><td><?php echo get_group($row['group']); ?></td></tr>
+      <tr id="<?php echo $row['username']; ?>_list"><td><?php echo $row['username']; ?><br><button onclick="edit_user(this)" value="<?php echo $row['username']; ?>">Bearbeiten</button> <button onclick="delete_popup(this)" value="<?php echo $row['username']; ?>">Löschen</button></td><td><?php echo $row['display_name']; ?></td><td><?php echo $row['mail']; ?></td><td><?php echo get_group($row['group']); ?></td></tr>
       <?php
     }
     ?>

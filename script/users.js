@@ -44,6 +44,10 @@ function create_user(){
                 status.innerHTML = '<span style="color: red;">Benutzer existiert bereits!</span>';
                 setTimeout(fadeout_error, 1000);
               break;
+              case '4':
+              status.innerHTML = '<span style="color: red;">Fehler</span>';
+                setTimeout(fadeout_error, 1000);
+              break;
             }
             
           }
@@ -53,6 +57,63 @@ function create_user(){
         
       }
 
+      function save_edit(user_id){
+        var xhttp = new XMLHttpRequest();
+        var username = document.getElementById('username_edit');
+        var display_name = document.getElementById('display_name_edit');
+        var mail = document.getElementById('mail_edit');
+        var group = document.getElementById('edit_group');
+        var new_pw = document.getElementById('new_pass');
+        var new_pw_re = document.getElementById('new_pass_re');
+        var url = "classes/user_function.php";
+        var params = "edit_user=" + user_id.value + "&username=" + username.value + "&display_name=" + display_name.value + "&mail=" + mail.value + "&group=" + group.value + "&new_pw=" + new_pw.value;
+          xhttp.open("POST", url, true);
+          //Send the proper header information along with the request
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.setRequestHeader("Content-length", params.length);
+          xhttp.setRequestHeader("Connection", "close");        
+
+        xhttp.onreadystatechange = function() {//Call a function when the state changes.
+          if(xhttp.readyState == 4 && xhttp.status == 200) {
+            switch(xhttp.responseText){
+              case '1':
+                document.getElementById('edit_status').innerHTML = '<span style="color: green; font-size: 22px;">Gespeichert!</span>';
+                setTimeout(fadeout_edit_status, 1000);
+              break;
+
+              case '2':
+                document.getElementById('edit_status').innerHTML = '<span style="color: red; font-size: 22px;">Fehler!</span>';
+                setTimeout(fadeout_edit_status_error, 1000);
+              break;
+              default:
+                document.getElementById('edit_status').innerHTML = '<span style="color: red; font-size: 22px;">Fehler:' + xhttp.responseText + '</span>';
+                setTimeout(fadeout_edit_status_error, 1000);
+            }
+                        
+          }
+        }
+        xhttp.send(params);
+      }
+      function fadeout_edit_status(){
+        var status = document.getElementById('edit_status');
+        status.style.animation = "fadeout 1s";
+        status.style.opacity = "0";
+        setTimeout(close_edit,1000);
+        setTimeout(site_reload,1000);
+      }
+      function site_reload(){
+        location.reload();
+      }
+      function fadeout_edit_status_error(){
+        var status = document.getElementById('edit_status');
+        status.style.animation = "fadeout 1s";
+        status.style.opacity = "0";
+        setTimeout(edit_status_clear,1000);    
+      }
+      function edit_status_clear(){
+        var status = document.getElementById('edit_status');
+        status.innerHTML = "";
+      }
       function delete_user(username){
         var xhttp = new XMLHttpRequest();
         var url = "classes/user_function.php";
@@ -98,7 +159,7 @@ function create_user(){
         var mail = document.getElementById('mail').value;
         var password = document.getElementById('password').value;
         var group = document.getElementById('group').options[document.getElementById('group').selectedIndex].text;
-        document.getElementById('user_list').innerHTML += '<tr id="' + username + '_list"><td>' + username + '<br><a href="?edit_user=' + username + '"><button>Bearbeiten</button></a> <button onclick="delete_popup(this)" value="' + username + '">Löschen</button></td><td>' + display_name + '</td><td>' + mail + '</td><td>' + group + '</td></tr>';
+        document.getElementById('user_list').innerHTML += '<tr id="' + username + '_list"><td>' + username + '<br><button onclick="edit_user(this)" value="' + username + '">Bearbeiten</button> <button onclick="delete_popup(this)" value="' + username + '">Löschen</button></td><td>' + display_name + '</td><td>' + mail + '</td><td>' + group + '</td></tr>';
       }
       function show_pop(){
           document.getElementById('popup_bg').style.visibility = "visible";
@@ -109,6 +170,14 @@ function create_user(){
          document.getElementById('popup_bg').style.opacity = "0";
          popup.style.visibility = "hidden";
          
+        }
+
+        function close_edit(){
+          var popup = document.getElementById('user_edit');
+         document.getElementById('user_edit').style.opacity = "0";
+         popup.style.visibility = "hidden";
+         var status = document.getElementById('create_status');
+         status.innerHTML = "";
         }
         function delete_popup(user_id){
           document.getElementById('user_del').style.visibility = "visible";

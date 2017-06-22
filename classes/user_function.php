@@ -22,7 +22,12 @@ if(isset($_POST['create_user'])){
 			$check_exist = $db->query("SELECT EXISTS(SELECT * FROM users WHERE username = '$username')");
 			$check_arr = $check_exist->fetchArray();
 			if ($check_arr[0] == 0){
-				$add_user = $db->exec("INSERT INTO users (username, display_name, mail, password, 'group') VALUES ('$username', '$display_name', '$mail', '$password', $group)");
+				try {
+					$add_user = $db->exec("INSERT INTO users (username, display_name, mail, password, 'group') VALUES ('$username', '$display_name', '$mail', '$password', $group)");
+				} catch (Exception $e) {
+					echo "4";
+				}
+				
 				echo "0";
 			} else {
 				echo "3";
@@ -35,6 +40,24 @@ if(isset($_POST['create_user'])){
 		
 	} else {
 		echo "1";
+	}
+	
+}
+
+if (isset($_POST['edit_user'])){
+	$user_id = $_POST['edit_user'];
+	$username = $_POST['username'];
+	$display_name = $_POST['display_name'];
+	$mail = $_POST['mail'];
+	$group = $_POST['group'];
+	$new_pw = $_POST['new_pw'];
+
+	try {
+		$db->exec("UPDATE users SET username='".$username."', display_name='".$display_name."', mail='".$mail."', 'group'='".$group."' WHERE id='$user_id'");
+
+		echo "1";
+	} catch (Exception $e) {
+		echo "2";
 	}
 	
 }

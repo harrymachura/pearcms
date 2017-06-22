@@ -23,7 +23,6 @@ $result_array = $result->fetchArray();
   <?php get_header('meta_tags'); ?>
 </head>
 <body>
-<?php rep_logo(); ?>
 <form>
 <input type="text" class="search" name="search" />
 </form>

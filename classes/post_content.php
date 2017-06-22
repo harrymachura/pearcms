@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
       echo '<div class="note_list">
       <table>
         <tr><td style="font-size: 26px; padding: 5px; background-color: rgba(230,230,230,0.4); border-top-left-radius: 5px; border-top-right-radius: 5px;"><a href="?id='.$row['id'].'"><h1 style="padding:0; margin:0; margin-left: 5px; margin-top: 5px; font-size: 26px;"><b>'.$row['title'].'</b></h1>'. $edit .'</a></td></tr>
-        <tr><td style="background-color: rgba(200,255,255,0.3); text-align: center;"><p style="margin:0; padding:0; font-size:14px;">Author '.$author['display_name'].' / '.$row['date'].'</p></td></tr>
+        <tr><td style="background-color: rgba(255,255,255,0.3); text-align: center;"><p style="margin:0; padding:0; font-size:14px;">Author '.$author['display_name'].' / '.$row['date'].'</p></td></tr>
         <tr><td style="background-color: rgba(255,255,255,0.1); padding: 15px;">'.nl2br(strip_tags(substr($row['content'], 0, 500))).'...</td></tr>
         <tr><td style="text-align: center; font-size: 12px; background-color: rgba(255,255,255,0.3);">Keywords: '.$row['keywords'].'</td></tr>
       </table>
