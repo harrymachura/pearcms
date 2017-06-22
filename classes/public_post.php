@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['pub_note'])){
+      if (permission("create_post") == 1){
       $userid = $_SESSION['userid'];
-      
       $result = $db->query("SELECT * FROM users WHERE id = '".$userid."'");
       $row = $result->fetchArray();
       $note_title = str_replace('"', '&quot;', $_POST['note_title']);
@@ -19,5 +19,10 @@ if (isset($_POST['pub_note'])){
         echo '<p style="font-size: 32px;" align="center">'.language::please_insert_a_title.'</p>';
         echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">'.language::back.'</a>';
       }
+
+      } else {
+        echo '<h2 style="text-align: center;">Zugriff verweigert!</h2>';
+      }
+      
   }
 ?>

@@ -83,9 +83,9 @@ if (isset($_POST['deactive_plugin'])){
                               $css_class = 'class="activate_bt"';                  
                           }
                       ?>
-                      <tr><td></td><td><button name="deactive_plugin" <?php echo $css_class; ?> onclick="deactive_plugin(this)" value="<?php echo $f; ?>"><?php 
+                      <tr><td></td><td><?php if (permission("visibility_plugins") == 1){ ?><button name="deactive_plugin" <?php echo $css_class; ?> onclick="deactive_plugin(this)" value="<?php echo $f; ?>"><?php 
                       	  echo $visible;
-                          ?></button> <button class="delete_bt" onclick="show_pop(this)" value="<?php echo $f; ?>"><?php echo language::delete; ?></button></td></tr>
+                          ?></button><?php } ?> <?php if (permission("remove_plugins") == 1){ ?><button class="delete_bt" onclick="show_pop(this)" value="<?php echo $f; ?>"><?php echo language::delete; ?></button><?php } ?></td></tr>
                     </table>
                   </td>
                 </tr>

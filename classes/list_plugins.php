@@ -4,10 +4,15 @@ if (isset($_GET['plugins'])){
     <h1 style="text-align: center;">Plugins</h1>
 
     <?php
-    include('classes/plugins_frm.php');
+    if (permission("show_plugins") == 1){
+      include('classes/plugins_frm.php');
+    } else {
+       echo '<h2 style="text-align: center;">Zugriff verweigert!</h2>';
+    }
+    
       
       
-
+    if (permission("show_plugins") == 1){
     ?>
     <script type="text/javascript">
         function show_pop(){
@@ -61,5 +66,6 @@ if (isset($_GET['plugins'])){
     </script>
 
     <?php
+  }
   }
   ?>

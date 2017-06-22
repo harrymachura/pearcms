@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['public_site'])) {
-	$userid = $_SESSION['userid'];
-      
+  if (permission("create_site") == 1){
+      $userid = $_SESSION['userid'];  
       $result = $db->query("SELECT * FROM users WHERE id = '".$userid."'");
       $row = $result->fetchArray();
       $site_title = str_replace('"', '&quot;', $_POST['site_title']);
@@ -13,7 +13,7 @@ if (isset($_GET['public_site'])) {
       date_default_timezone_set("Europe/Berlin");
       $timestamp = time();
       //if ($pass_check == "on"){
-      	//if 
+        //if 
       //}
       $site_date = date("d.m.Y",$timestamp);
       if (strlen($site_title) > 0) {
@@ -25,5 +25,9 @@ if (isset($_GET['public_site'])) {
         echo '<p style="font-size: 32px;" align="center">'.language::please_insert_a_title.'</p>';
         echo '<a href="'. $_SERVER['HTTP_REFERER'] .'">'.language::back.'</a>';
       }
+  } else {
+    echo '<h2 style="text-align: center;">Zugriff verweigert!</h2>';
+  }
+	
 }
 ?>

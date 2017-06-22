@@ -10,8 +10,18 @@ if (isset($_GET['id'])) {
   $author_id = $row['author'];
   $author_arr = $db->query("SELECT * FROM users WHERE id = '$author_id'");
   $author = $author_arr->fetchArray();
+  $user_id = $_SESSION['userid'];
+
   if(isset($_SESSION['userid'])) {
-    $edit = '<a href="admin.php?edit_note='. $row['id'] .'">['.language::edit.']</a><a href="admin.php?delete_note='. $row['id'] .'">['.language::delete.']</a>';
+      if (permission("edit_other_posts") == 1 && empty($author_id == $user_id) or $author_id == $user_id){
+        $edit .= '<a href="admin.php?edit_note='. $row['id'] .'">['.language::edit.']</a>';
+      }
+      if (permission("delete_other_posts") == 1 && empty($author_id == $user_id) or $author_id == $user_id) {
+        $edit .= '<a href="admin.php?delete_note='. $row['id'] .'">['.language::delete.']</a>';
+      }
+
+
+    
   }
   echo '<table width="100%">';
   echo '<tr><td align="center"><h2 style="text-align: center;">'. $row['title'] .'</h2>'. $edit .'</td></tr>';
@@ -25,13 +35,20 @@ if (isset($_GET['id'])) {
   $rows_ = $db->query("SELECT COUNT(*) as count FROM posts");  
   $row_ = $rows_->fetchArray();
   $numRows = $row_['count'];
+  $user_id = $_SESSION['userid'];
   if ($numRows > 0) {
     while ($row = $result->fetchArray()) {
-        $edit = "";
-      if(isset($_SESSION['userid'])) {
-        $edit = '<div style="font-size: 14px;"><a href="admin.php?edit_note='.$row['id'].'">['.language::edit.']</a><a href="admin.php?delete_note='.$row['id'].'">['.language::delete.']</a><div>';
-      }
+        $edit = '<div style="font-size: 14px;">';
       $author_id = $row['author'];
+      if(isset($_SESSION['userid'])) {
+        if (permission("edit_other_posts") == 1 && empty($author_id == $user_id) or $author_id == $user_id){
+          $edit .= '<a href="admin.php?edit_note='.$row['id'].'">['.language::edit.']</a>';
+        }
+        if (permission("delete_other_posts") == 1 && empty($author_id == $user_id) or $author_id == $user_id) {
+          $edit .= '<a href="admin.php?delete_note='.$row['id'].'">['.language::delete.']</a>';
+        }
+        }
+      $edit .= '</div>';
       $author_arr = $db->query("SELECT * FROM users WHERE id = '$author_id'");
       $author = $author_arr->fetchArray();
       echo '<div class="note_list">

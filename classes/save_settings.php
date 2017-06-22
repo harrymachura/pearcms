@@ -9,8 +9,9 @@ class MyDB extends SQLite3
 }
 $db = new MyDB();
 if (isset($_POST['site_title'])){
-	include('../config.php');
-	include('../language/'.$language.'.php');
+	if (permission("edit_settings") == 1){
+		include('../config.php');
+		include('../language/'.$language.'.php');
 	try {
 		$site_title = $_POST['site_title'];
 		$site_description = $_POST['site_description'];
@@ -22,6 +23,6 @@ if (isset($_POST['site_title'])){
 	} catch (Exception $e) {
 		echo $e;
 	}
-	
+	}
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 if (isset($_GET['new_site'])){
-    //Abfrage der Nutzer ID vom Login
+  if (permission("create_site") == 1){
+        //Abfrage der Nutzer ID vom Login
         $userid = $_SESSION['userid'];
         $result = $db->query("SELECT * FROM users WHERE id = '".$userid."'");
         $row = $result->fetchArray();
@@ -43,5 +44,8 @@ if (isset($_GET['new_site'])){
     </table>   
     </form>
     <?php
+    } else {
+      echo '<h2 style="text-align: center;">Zugriff verweigert!</h2>';
+    }
   }
   ?>

@@ -1,5 +1,6 @@
 <?php
 if(isset($_GET['settings'])){
+  if (permission("edit_settings") == 1){
     ?>
     <h2 style="text-align: center;"><?php echo language::settings; ?></h2>
     <table width="80%" align="center">
@@ -37,12 +38,12 @@ if(isset($_GET['settings'])){
       $get_current_page = $db->query("SELECT * FROM options WHERE id='1'");
       $curr_arr = $get_current_page->fetchArray();
       while ($row = $get_sites->fetchArray()) {
-      	if ($row['id'] == $curr_arr['start_site']){
-      		echo '<option value="'.$row['id'].'" selected>'.$row['title'].'</option>'."\n";
-      	} else {
-      		echo '<option value="'.$row['id'].'">'.$row['title'].'</option>'."\n";
-      	}
-      	
+        if ($row['id'] == $curr_arr['start_site']){
+          echo '<option value="'.$row['id'].'" selected>'.$row['title'].'</option>'."\n";
+        } else {
+          echo '<option value="'.$row['id'].'">'.$row['title'].'</option>'."\n";
+        }
+        
       }
       ?>
       </select>
@@ -88,5 +89,8 @@ if(isset($_GET['settings'])){
 
     
     <?php
+  } else {
+    echo '<h2 style="text-align: center;">Zugriff verweigert!</h2>';
+  }
   }
 ?>

@@ -18,9 +18,7 @@
     <div class="panel_group">
       <div onclick="toggle(this)" class="group_title"><?php echo language::sites; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-          <?php
-    if (permission("create_site") == 1){
-  ?><li><a href="admin.php?new_site"><?php echo language::new_site; ?></a></li><?php } ?>
+        <?php if (permission("create_site") == 1){ ?><li><a href="admin.php?new_site"><?php echo language::new_site; ?></a></li><?php } ?>
         <li><a href=""><?php echo language::sites; ?></a></li>
         <?php echo event('admin_panel_site_button', ""); ?>
       </ol>
@@ -30,8 +28,8 @@
     <div class="panel_group">
       <div onclick="toggle(this)" class="group_title"><?php echo language::plugins; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?plugins"><?php echo language::show; ?></a></li>
-        <li><a href="#"><?php echo language::install; ?></a></li>
+        <?php if (permission("show_plugins") == 1){ ?><li><a href="admin.php?plugins"><?php echo language::show; ?></a></li><?php } ?>
+        <?php if (permission("install_plugins") == 1){ ?><li><a href="#"><?php echo language::install; ?></a></li><?php } ?>
         <?php echo event('admin_panel_plugin_button', ""); ?>
       </ol>
       </span>
@@ -54,8 +52,8 @@
     <div class="panel_group">
       <div onclick="toggle(this)" class="group_title"><?php echo language::users; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
-        <li><a href="admin.php?users"><?php echo language::users; ?></a></li>
-        <li><a href=""><?php echo language::groups; ?></a></li>
+        <?php if (permission("show_users") == 1){ ?><li><a href="admin.php?users"><?php echo language::users; ?></a></li><?php } ?>
+        <?php if (permission("show_groups") == 1){ ?><li><a href="?groups"><?php echo language::groups; ?></a></li><?php } ?>
         <?php echo event('admin_panel_user_button', ""); ?>
       </ol>
       </span>

@@ -1,5 +1,6 @@
 <?php
 if (isset($_GET['new_note'])) {
+  if (permission("create_post") == 1){
     //Abfrage der Nutzer ID vom Login
         $userid = $_SESSION['userid'];
          
@@ -33,5 +34,8 @@ if (isset($_GET['new_note'])) {
     </table>   
     </form>
     <?php
+    } else {
+      echo '<h2 style="text-align: center;">Zugriff verweigert!</h2>';
+    }
   }
 ?>
