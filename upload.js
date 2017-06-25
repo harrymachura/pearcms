@@ -45,7 +45,7 @@ function uploadFile()
  
     client.onload = function(e) {
         document.getElementById("prozent").innerHTML = "100%";
-        prog.value = prog.max;
+        //prog.value = prog.max;
     };
  
     client.upload.onprogress = function(e) {
@@ -58,10 +58,14 @@ function uploadFile()
             //File Objekt (erstes Element der FileList)
             var file = fileList[0];
             var input_finish = document.getElementById("finish");
-            input_finish.value = 'http://' + location.hostname + '/upload/' + file.name;
+            input_finish.href = 'http://' + location.hostname + '/upload/' + file.name;
+            input_finish.innerHTML = 'http://' + location.hostname + '/upload/' + file.name;
             input_finish.focus();
-            input_finish.selectionStart = 0;
-            input_finish.selectionEnd = input_finish.value.length;
+            var checkbox = document.getElementById('checkboxOneInput');
+            if (checkbox.checked == true) {
+                upload_frame();
+                alert("Upload abgeschlossen");
+            }
         }
     };
 	
@@ -77,4 +81,14 @@ function uploadAbort() {
 	if(client instanceof XMLHttpRequest)
 		//Briecht die aktuelle Übertragung ab
 		client.abort();
+}
+ function upload_frame(){
+        var frame = document.getElementById('upload_popup_bg');
+        frame.style.opacity = "1";
+        frame.style.visibility = "visible";
+}
+        function close_upload_frame(){
+        var frame = document.getElementById('upload_popup_bg');
+        frame.style.opacity = "0";
+        frame.style.visibility = "hidden";
 }

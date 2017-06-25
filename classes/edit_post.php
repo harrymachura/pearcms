@@ -65,17 +65,29 @@ if (isset($_GET['edit_note'])) {
           <input type="hidden" name="note_id" value="<?php echo $row_edit_note['id']; ?>">
           </form>
           </div>
-          <form action="" method="post" enctype="multipart/form-data">
-          <table class="file_upload">
-            <tr><td><?php echo language::file; ?>:</td><td><input name="file" type="file" id="fileA" onchange="fileChange();"/></td></tr>
-            <tr><td><?php echo language::filename; ?>:</td><td><div id="fileName"></div></td></tr>
-            <tr><td><?php echo language::filesize; ?>:</td><td><div id="fileSize"></div></td></tr>
-            <tr><td><?php echo language::filetype; ?>:</td><td><div id="fileType"></div></td></tr>
-            <tr><td><?php echo language::process; ?>:</td><td><progress id="progress" style="margin-top:10px" value="0" max="100"></progress> <span id="prozent"></span></td></tr>
-            <tr><td><?php echo language::link; ?>:</td><td><input type="text" id="finish" value=""></td></tr>
-            <tr><td><input name="upload" value="<?php echo language::upload; ?>" type="button" onclick="uploadFile();" /></td><td><input name="abort" value="<?php echo language::abort; ?>" type="button" onclick="uploadAbort();" /></td></tr>
-          </table>   
-          </form>
+          <div id="upload_popup_bg">
+            <div id="upload_popup_frame">
+            <div class="close" id="close_upload_frame" onclick="close_upload_frame()"><hr class="close_a"><hr class="close_b"></div>
+              <form action="" method="post" enctype="multipart/form-data">
+              <table class="file_upload">
+                <tr><td><?php echo language::file; ?>:</td><td><input name="file" type="file" id="fileA" onchange="fileChange();"/></td></tr>
+                <tr><td><?php echo language::filename; ?>:</td><td><div id="fileName"></div></td></tr>
+                <tr><td><?php echo language::filesize; ?>:</td><td><div id="fileSize"></div></td></tr>
+                <tr><td><?php echo language::filetype; ?>:</td><td><div id="fileType"></div></td></tr>
+                <tr><td><?php echo language::process; ?>:</td><td><progress id="progress" style="margin-top:10px" value="0" max="100"></progress> <span id="prozent"></span></td></tr>
+                <tr><td><?php echo language::link; ?>:</td><td><a href="#" id="finish"></td></tr>
+                <tr><td><input name="upload" value="<?php echo language::upload; ?>" type="button" onclick="uploadFile();" /></td><td><input name="abort" value="<?php echo language::abort; ?>" type="button" onclick="uploadAbort();" /></td></tr>
+              </table>   
+              </form>
+              <table align="right"><tr><td align="right"><section>
+                  <div class="checkboxOne">
+                    <input type="checkbox" value="1" onchange="upload_notify()" id="checkboxOneInput" name="" />
+                    <label for="checkboxOneInput"></label>
+                  </div>
+              </section></td><td>Benachrichtigung?</td></tr></table>
+            </div>
+          </div>
+          <button onclick="upload_frame()">File Upload</button>
           <?php
       }
         

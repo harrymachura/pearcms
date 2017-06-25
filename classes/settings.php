@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_GET['settings'])){
   if (permission("edit_settings") == 1){
     ?>

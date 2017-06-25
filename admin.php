@@ -78,7 +78,7 @@ if (isset($_GET['search'])) {
   include('classes/new_site.php');
 
   include('classes/public_site.php');
-
+  
   include('classes/settings.php');
   //Wenn es weder keinen Post oder GET gibt dann zeige Admin Startseite an.
   include('classes/admin_page.php');

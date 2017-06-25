@@ -13,7 +13,7 @@ if (isset($_GET['users'])) {
                 <table width="100%">
                   <tr><td>Benutzername*:</td><td><input type="text" name="username" id="username"></td></tr>
                   <tr><td>Name:</td><td><input type="text" name="name" id="name"></td></tr>
-                  <tr><td>E-Mail*:</td><td><input type="mail" name="name" id="mail"></td></tr>
+                  <tr><td>E-Mail*:</td><td><input type="email" name="name" id="mail"></td></tr>
                   <tr><td>Passwort*:</td><td><input type="password" name="password" id="password"></td></tr>
                   <tr><td>Gruppe*:</td><td><select id="group">
                     <?php
