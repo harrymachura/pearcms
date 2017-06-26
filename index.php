@@ -17,13 +17,12 @@ try {
     	include($url);
 } catch (ErrorException $e) {
 		if (!empty($_SERVER['PATH_INFO'])) {
+
 			$site_name = str_replace("/", "", $_SERVER['PATH_INFO']);
 			$site_arr = $db->query("SELECT * FROM pages WHERE title = '$site_name'");
 			$site_= $site_arr->fetchArray();
 
 			if ($site_['title'] = "") {
-				
-				echo $site_name;
 				include("themes/" . $theme . "/admin.php");
 			} else {
 				$site = $site_['id'];

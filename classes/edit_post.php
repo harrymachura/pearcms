@@ -68,6 +68,7 @@ if (isset($_GET['edit_note'])) {
           <div id="upload_popup_bg">
             <div id="upload_popup_frame">
             <div class="close" id="close_upload_frame" onclick="close_upload_frame()"><hr class="close_a"><hr class="close_b"></div>
+            <h2 style="text-align: center; padding-bottom: 10px;">Datei hochladen</h2>
               <form action="" method="post" enctype="multipart/form-data">
               <table class="file_upload">
                 <tr><td><?php echo language::file; ?>:</td><td><input name="file" type="file" id="fileA" onchange="fileChange();"/></td></tr>
@@ -87,7 +88,7 @@ if (isset($_GET['edit_note'])) {
               </section></td><td>Benachrichtigung?</td></tr></table>
             </div>
           </div>
-          <button onclick="upload_frame()">File Upload</button>
+          <button onclick="upload_frame()">Datei hochladen</button>
           <?php
       }
         

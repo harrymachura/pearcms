@@ -10,9 +10,10 @@ if (isset($_GET['id'])) {
   $author_id = $row['author'];
   $author_arr = $db->query("SELECT * FROM users WHERE id = '$author_id'");
   $author = $author_arr->fetchArray();
-  $user_id = $_SESSION['userid'];
+
 
   if(isset($_SESSION['userid'])) {
+      $user_id = $_SESSION['userid'];
       if (permission("edit_other_posts") == 1 && empty($author_id == $user_id) or $author_id == $user_id){
         $edit .= '<a href="admin.php?edit_note='. $row['id'] .'">['.language::edit.']</a>';
       }
@@ -34,13 +35,13 @@ if (isset($_GET['id'])) {
   $result = $db->query('SELECT * FROM posts ORDER BY id DESC');
   $rows_ = $db->query("SELECT COUNT(*) as count FROM posts");  
   $row_ = $rows_->fetchArray();
-  $numRows = $row_['count'];
-  $user_id = $_SESSION['userid'];
+  $numRows = $row_['count'];  
   if ($numRows > 0) {
     while ($row = $result->fetchArray()) {
         $edit = '<div style="font-size: 14px;">';
       $author_id = $row['author'];
       if(isset($_SESSION['userid'])) {
+        $user_id = $_SESSION['userid'];
         if (permission("edit_other_posts") == 1 && empty($author_id == $user_id) or $author_id == $user_id){
           $edit .= '<a href="admin.php?edit_note='.$row['id'].'">['.language::edit.']</a>';
         }

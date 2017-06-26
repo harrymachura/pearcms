@@ -62,9 +62,15 @@ function uploadFile()
             input_finish.innerHTML = 'http://' + location.hostname + '/upload/' + file.name;
             input_finish.focus();
             var checkbox = document.getElementById('checkboxOneInput');
+
             if (checkbox.checked == true) {
+                if (!Notification) {
+                    alert("Upload abgeschlossen");
+                  } else {
+                    notify(file.name);
+                  }
                 upload_frame();
-                alert("Upload abgeschlossen");
+                
             }
         }
     };
@@ -91,4 +97,23 @@ function uploadAbort() {
         var frame = document.getElementById('upload_popup_bg');
         frame.style.opacity = "0";
         frame.style.visibility = "hidden";
+}
+function upload_notify(){
+    if (Notification.permission !== "granted"){
+        Notification.requestPermission();
+    } 
+}
+function notify(src_file) {
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+  else {
+    var notification = new Notification('Upload abgechlossen', {
+      icon: 'images/upload.png',
+      body: "Die Datei ,," + src_file + "'' wurder erfolgreich hochgeladen!"
+    });
+    notification.onclick = function () {
+      window.open(location);      
+    };
+
+  }
 }

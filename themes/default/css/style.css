@@ -485,6 +485,7 @@ left: 80%;
 opacity: 1;
 cursor: text;
 background-position: 5px 50%;
+padding-left: 5px;
 }
 
 /* Navigationsmenü */
@@ -1154,13 +1155,14 @@ border:solid;
 border-width: 2px;
 border-radius: 10px;
 border-color: rgba(255,255,255,0.6);
-padding: 5px;
+padding: 10px;
+padding-top: 5px;
 color: black;
 transition: all 0.4s ease-in-out;
 }
 .site:hover {
 background: none;
-background-color: rgba(255,255,255,0.85);
+background-color: rgba(255,255,255,.85);
 }
 .note {
 width: 100%;
@@ -1169,14 +1171,20 @@ margin-left: auto;
 border: solid;
 border-width: 1px;
 border-color: rgba(255,255,255,0.5);
-border-radius: 5px;
+border-radius: 0px;
 }
 .note_list table{
 width: 100%;
-
 }
 .note_list {
+border-radius: 10px;
+left: 0;
+width: 98%;
 border-color: rgba(0,0,0,0.3);
+}
+.note_list:hover{
+width: 98%;
+box-shadow: none;
 }
 html {
 margin: 0px;
