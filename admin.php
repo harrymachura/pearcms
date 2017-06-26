@@ -98,7 +98,7 @@ if (isset($_GET['search'])) {
     <?php
     $get_groups = $db->query("SELECT * FROM groups");
     while ($group_name = $get_groups->fetchArray()) {
-      echo '<tr><td>'. $group_name['name'] .'<button onclick="open_group_edit(this)" value="'.$group_name['id'].'">Bearbeiten</button></td></tr>';
+      echo '<tr><td>'. $group_name['name'] .'<button style="margin-left: 5px;">Löschen</button><button onclick="open_group_edit(this)" value="'.$group_name['id'].'">Bearbeiten</button></td></tr>';
     }
     ?>
     </table>
@@ -111,7 +111,7 @@ if (isset($_GET['search'])) {
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 1;
+        z-index: 3;
         background-color: rgba(0,0,0,.5);
         transition: all 0.2s ease-in-out;
       }
