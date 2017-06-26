@@ -104,34 +104,14 @@ font-family: "Josefin";
 border-radius: 5px;
 top: 0px;
 }
-
-.note_img{
-position: relative;
-display: block;
-border-radius: 10px;
-transition: all 0.3s ease-in-out;
-}
-.site .note_img:hover{
-box-shadow: 0px 0px 10px #000;
-}
 .site button:hover{
 background-color: rgba(0,0,0,0.5);
 color: white;
 }
 /* Dateiupload Form */
 .file_upload{
-/*border: solid;
-border-width: 1px;
-border-radius: 5px;
-border-color: rgba(0,0,0,0.5);
-background-color: rgba(255,255,255,0.5);
-margin-left: auto;
-margin-right: auto;
-margin-top: 10px;
-padding: 10px; */
 color: black;
 margin-left: auto;
-
 margin-right: auto;
 }
 .file_upload progress {
@@ -141,7 +121,6 @@ border-color: black;
 height: 26px;
 width: 100%;
 border-radius: 5px;
-
 }
 .file_upload progress::-webkit-progress-bar {
 background-color: rgba(50, 50, 50, 0.4);
@@ -206,7 +185,6 @@ transition: all 0.3s ease-in-out;
 background-color: rgba(0,0,0,0.5);
 color: white;
 }
-
 #upload_popup_bg{
 visibility: hidden;
 opacity: 0;
@@ -289,7 +267,7 @@ float: right;
 transition: all 0.3s ease-in-out;
 }
 #edit_group_frame .close:hover{
-	background-color: rgba(0,0,0,.1);
+background-color: rgba(0,0,0,.1);
 }
 #upload_popup_frame .close{
 cursor: pointer;
@@ -304,13 +282,12 @@ transition: all 0.3s ease-in-out;
 #upload_popup_frame .close:hover{
 background-color: rgba(0,0,0,.1);
 }
-
 #upload_popup_frame table{
-	position: relative;
-	top: -20px;
+position: relative;
+top: -20px;
 }
 #upload_popup_frame table td{
-	padding-left: 10px;
+padding-left: 10px;
 }
  /**
  * Create the slider bar
@@ -319,7 +296,6 @@ background-color: rgba(0,0,0,.1);
 width: 40px;
 height: 10px;
 background: #555;
-
 position: relative;
 border-radius: 3px;
 }
@@ -331,13 +307,11 @@ display: block;
 width: 16px;
 height: 16px;
 border-radius: 50%;
-
 transition: all .3s ease;
 cursor: pointer;
 position: absolute;
 top: -3px;
 left: -3px;
-
 background: #ccc;
 }
 .checkboxOne input[type=checkbox]:checked + label {
@@ -349,7 +323,6 @@ border-color: #296d26;
 }
 /* Notizen gelistet */
 .note_list {
-
 width: 95%;
 margin-right: auto;
 margin-left: auto;
@@ -444,7 +417,6 @@ width: 100%;
 margin-left: auto;
 margin-right: auto;
 }
-
 /* Login Button */
 .login button{
 cursor: pointer;
@@ -483,7 +455,6 @@ transition: all 0.3s ease-in-out;
 background-color: rgba(0,0,0,0.3);
 box-shadow: 0px 0px 10px #000;
 }
-
 /* Sucheingabe oben Rechts */
 .search {
 position: fixed;
@@ -524,7 +495,6 @@ cursor: text;
 background-position: 5px 50%;
 padding-left: 5px;
 }
-
 /* Navigationsmenü */
 #drop-nav{
 background-color: rgba(255,255,255,0.8);
@@ -585,7 +555,6 @@ background: rgba(0,0,0,0.8);
 .box{
 box-shadow: 3px 5px 30px rgba(0,0,0,0.5);
 }
-
 /* Fußzeile */
 .footer {
 text-align: center;
@@ -626,12 +595,10 @@ transition: all 0.2s ease-in-out;
 .picture:hover {
 box-shadow: 0px 0px 40px #000;
 }
-
 /* Reponsives Logo wird ausgeblendet */
 .rep_logo {
 display: none;
 }
-
 /* Social Buttons auf der Kontaktseite */
 .social{
 height: 22px;
@@ -655,7 +622,6 @@ text-align: center;
 padding-top: 50px;
 padding-bottom: 10px;
 }
-
 /* Navigationszeile */
 .rep_nav{
 display: none;
@@ -673,7 +639,6 @@ height: 50px;
 background-color: rgba(255,255,255,0.8);
 box-shadow: 0px 5px 20px rgba(0,0,0,0.5);
 }
-
 /* Dropdown Button */
 .dropbtn {
 height: 40px;
@@ -693,12 +658,10 @@ font-family: "Josefin";
 cursor: pointer;
 box-shadow: 0px 0px 2px #000;
 }
-
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
 background-color: rgba(0,0,0,0.5);
 }
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
 z-index: 3;
@@ -721,7 +684,6 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 font-size: 48px;
 z-index: 1;
 }
-
 /* Links inside the dropdown */
 .dropdown-content a {
 color: black;
@@ -729,19 +691,15 @@ padding: 12px 16px;
 text-decoration: none;
 display: block;
 }
-
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
-
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
-
 .video_frm{
 border: none; 
 width: 720px; 
 height: 360px;
 }
-
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #notify {
  visibility: hidden; /* Hidden by default. Visible on click */
@@ -774,7 +732,6 @@ to {bottom: 30px; opacity: 1;}
 from {bottom: 0; opacity: 0;}
 to {bottom: 30px; opacity: 1;}
 }
-
 @-moz-keyframes fadeout {
 from {bottom: 30px; opacity: 1;} 
 to {bottom: 0; opacity: 0;}
@@ -783,7 +740,6 @@ to {bottom: 0; opacity: 0;}
 from {bottom: 30px; opacity: 1;}
 to {bottom: 0; opacity: 0;}
 }
-
 .admin_panel{
 top: 0;
 height: 100vh;
@@ -819,7 +775,6 @@ cursor: pointer;
 .admin_panel #close:hover{
 background-color: rgba(244, 66, 66,.8);
 }
-
 .admin_panel .logout_bt{
 width: 24px;
 height: 24px;
@@ -834,7 +789,6 @@ border-radius: 4px;
 transition: all 0.3s ease-in-out;
 cursor: pointer;
 }
-
 .admin_panel .logout_bt:hover{
 background-color: #ff2b2b;
 }
@@ -918,7 +872,6 @@ background-color: rgba(255,255,255,.5);
 .group_content{
 display: none;
 }
-
 .plugin_container{
 width: 500px;
 border: solid;
@@ -943,7 +896,6 @@ background-color: rgba(130, 20, 20,.7);
 }
 .plugin_container .deactivate_bt:hover{
 background-color: rgba(20, 130, 37,.7);
-
 }
 .popup_bg{
 top: 0;
@@ -1056,7 +1008,6 @@ border-color: rgba(255,255,255,.5);
 #menu_content a{
 text-decoration: none;
 }
-
 #menu_content a:visited{
 color:white;
 }
@@ -1070,7 +1021,6 @@ background-color: initial;
 .search_rep{
 display: none;
 }
-
 .user_list{
 width: 100%;
 font-size: 22px;
@@ -1084,19 +1034,18 @@ background-color: rgba(255,255,255,.5);
 font-size: 14px;
 padding: 3px;
 }
-
 .groups_table{
-	margin-left: auto;
-	margin-right: auto;
-	width: 300px;
+margin-left: auto;
+margin-right: auto;
+width: 300px;
 }
 .groups_table td{
-	background-color: rgba(255,255,255,.5);
-	padding: 12px;
+background-color: rgba(255,255,255,.5);
+padding: 12px;
 }
 .groups_table button{
-	font-size: 12px;
-	float: right;
+font-size: 12px;
+float: right;
 }
 @media only screen and (max-width: 1200px) {
 #drop-nav{
@@ -1104,7 +1053,6 @@ background-position: right;
 background-position: 90%;
 }
 }
-
 /* Reponsives Design für Mobile Geräte */
 @media only screen and (max-width: 800px) {
 .video_frm{
@@ -1116,7 +1064,6 @@ margin-right: auto;
 width: 100%;
 margin-top: 0%;
 }
-
 .rep_nav{
 display: inline;
 }
