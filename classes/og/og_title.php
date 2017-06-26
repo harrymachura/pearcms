@@ -16,6 +16,6 @@
              echo "";
         break;}
   } else { 
-    echo "Notizen";
+    echo "Beiträge";
   }
 ?>

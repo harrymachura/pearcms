@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>at-Tawhid - <?php include('classes/og/og_title.php'); ?></title>
+  <title><?php 
+  // Ermittel den Dokumenttitel
+   echo get_header('title'); ?> - <?php include('classes/og/og_title.php'); ?></title>
   <meta charset="UTF-8">
   <meta name="content-language" content="de" />
   <meta name="author"           content="<?php include('classes/og/og_author.php'); ?>" />

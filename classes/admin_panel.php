@@ -53,7 +53,7 @@
       <div onclick="toggle(this)" class="group_title"><?php echo language::users; ?><span style="float: right;">+</span></div><span class="group_content">
       <ol id="panel_list">
         <?php if (permission("show_users") == 1){ ?><li><a href="admin.php?users"><?php echo language::users; ?></a></li><?php } ?>
-        <?php if (permission("show_groups") == 1){ ?><li><a href="?groups"><?php echo language::groups; ?></a></li><?php } ?>
+        <?php if (permission("show_groups") == 1){ ?><li><a href="admin.php?groups"><?php echo language::groups; ?></a></li><?php } ?>
         <?php echo event('admin_panel_user_button', ""); ?>
       </ol>
       </span>
