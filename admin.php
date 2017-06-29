@@ -102,119 +102,31 @@ if (isset($_GET['search'])) {
     }
     ?>
     </table>
-    <style type="text/css">
-      #edit_group_bg{
-        visibility: hidden;
-        opacity: 0;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: 3;
-        background-color: rgba(0,0,0,.5);
-        transition: all 0.2s ease-in-out;
-      }
-      #edit_group_frame{
-        width: 70%;
-        min-width: 320px;
-        position: relative;
-        padding: 15px;
-        border-radius: 10px;
-        color: black;
-        background-color: rgba(255,255,255,.8);
-        margin-left: auto;
-        margin-right: auto;
-        top: 10vh;
-        box-shadow: 0px 0px 10px #000;
-        
-        max-height: 80vh;
-        min-height: 300px;
-      }
-      #edit_group_frame table{
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-
-      }
-      #edit_group_frame tr {
-        display: inline-flex;
-        width: auto;
-
-        padding-left: 20px;
-
-      }
-      #edit_group_frame td{
-        width: 230px;
-      }
-      #edit_group_frame #checkBox{
-        float: right;
-      }
-      .group_scroll{
-        max-height: 70vh;
-        min-height: 300px;
-        overflow:auto;
-        overflow-y: scroll;
-      }
-      input[type=checkbox]{
-      -webkit-appearance: none;
-      background-color: #fafafa;
-      border: 1px solid #cacece;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-      padding: 9px;
-      top: 0px;
-      border-radius: 3px;
-      display: inline-block;
-      position: relative;
-      width: 16px;
-      height: 16px;
-      }
-      input[type=checkbox]:active input[type=checkbox]:checked:active{
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
-      }
-      input[type=checkbox]:checked{
-        background-color: #e9ecee;
-        border: 1px solid #adb8c0;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
-        color: #7bba73;
-      }
-      input[type=checkbox]:hover{
-        background-color: #e9ecee;
-      }
-      input[type=checkbox]:checked:after{
-        content: '\2714';
-        font-size: 14px;
-        position: absolute;
-        top: 0px;
-        left: 3px;
-        color: #7bba73;
-      }
-    </style>
     <div id="edit_group_bg">
       <div id="edit_group_frame">
       <div class="close" id="close_upload_frame" onclick="close_group_edit_frame()"><hr class="close_a"><hr class="close_b"></div>
-      <h3 style="text-align: center;">Gruppe bearbeiten.</h3>
+      <div style="text-align: center; font-size: 24px; padding-bottom: 20px;">Gruppe „<b><span id="groupname"></span></b>“ bearbeiten.</div>
       <div class="group_scroll">
       <table style="padding: 10px;" align="center">
-        <tr><td>Beiträge erstellen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Seiten erstellen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Beiträge bearbeiten:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Seiten bearbeiten:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Fremde Beiträge bearbeiten:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Fremde Seiten bearbeiten:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Einstellungen ändern:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Plugins anzeigen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Plugins installieren:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Plugins entfernen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Plugins aktivieren/deaktivieren:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Benutzer anzeigen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Benutzer erstellen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Benutzer entfernen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Benutzer bearbeiten:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Gruppen anzeigen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Gruppen erstellen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Gruppen entfernen:<input id="checkBox" type="checkbox"></td></tr>
-        <tr><td>Gruppen bearbeiten:<input id="checkBox" type="checkbox"></td></tr>
+        <tr><td>Beiträge erstellen:<input id="create_post_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Seiten erstellen:<input id="create_site_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Beiträge bearbeiten:<input id="edit_post_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Seiten bearbeiten:<input id="edit_site_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Fremde Beiträge bearbeiten:<input id="edit_other_post_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Fremde Seiten bearbeiten:<input id="edit_other_site_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Einstellungen ändern:<input id="change_settings_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Plugins anzeigen:<input id="show_plugins_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Plugins installieren:<input id="install_plugins_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Plugins entfernen:<input id="remove_plugins_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Plugins aktivieren/deaktivieren:<input id="plugins_visibility_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Benutzer anzeigen:<input id="show_users_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Benutzer erstellen:<input id="create_users_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Benutzer entfernen:<input id="remove_users_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Benutzer bearbeiten:<input id="edit_users_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Gruppen anzeigen:<input id="show_groups_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Gruppen erstellen:<input id="create_groups_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Gruppen entfernen:<input id="remove_groups_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
+        <tr><td>Gruppen bearbeiten:<input id="edit_groups_cb" class="group_checkbox" type="checkbox" onclick="change_group_entry(this)"></td></tr>
       </table>
       </div>
       </div>
@@ -226,9 +138,92 @@ if (isset($_GET['search'])) {
         edit_frame.style.visibility = "hidden";
       }
       function open_group_edit(group_id){
-        var edit_frame = document.getElementById('edit_group_bg');
-        edit_frame.style.opacity = "1";
-        edit_frame.style.visibility = "visible";
+        var xhttp = new XMLHttpRequest();
+            var url = "classes/group_function.php";
+            var params = "group_data=" + group_id.value;
+              xhttp.open("POST", url, true);
+              //Send the proper header information along with the request
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.setRequestHeader("Content-length", params.length);
+              xhttp.setRequestHeader("Connection", "close");
+
+              xhttp.onreadystatechange = function() {//Call a function when the state changes.
+              if(xhttp.readyState == 4 && xhttp.status == 200) {
+                var edit_frame = document.getElementById('edit_group_bg');     
+                var group_arr = JSON.parse(xhttp.responseText);
+                document.getElementById('create_post_cb').checked = parse_state(group_arr.create_post);
+                document.getElementById('create_post_cb').value = group_id.value;
+
+                document.getElementById('create_site_cb').checked = parse_state(group_arr.create_site);
+                document.getElementById('create_site_cb').value = group_id.value;
+
+                document.getElementById('edit_post_cb').checked = parse_state(group_arr.edit_post);
+                document.getElementById('edit_post_cb').value = group_id.value;
+
+                document.getElementById('edit_site_cb').checked = parse_state(group_arr.edit_site);
+                document.getElementById('edit_site_cb').value = group_id.value;
+
+                document.getElementById('edit_other_post_cb').checked = parse_state(group_arr.edit_other_posts);
+                document.getElementById('edit_other_post_cb').value = group_id.value;
+
+                document.getElementById('edit_other_site_cb').checked = parse_state(group_arr.edit_other_sites);
+                document.getElementById('edit_other_site_cb').value = group_id.value;
+
+                document.getElementById('change_settings_cb').checked = parse_state(group_arr.edit_settings);
+                document.getElementById('change_settings_cb').value = group_id.value;
+
+                document.getElementById('show_plugins_cb').checked = parse_state(group_arr.show_plugins);
+                document.getElementById('show_plugins_cb').value = group_id.value;
+
+                document.getElementById('install_plugins_cb').checked = parse_state(group_arr.install_plugins);
+                document.getElementById('install_plugins_cb').value = group_id.value;
+
+                document.getElementById('remove_plugins_cb').checked = parse_state(group_arr.remove_plugins);
+                document.getElementById('remove_plugins_cb').value = group_id.value;
+
+                document.getElementById('plugins_visibility_cb').checked = parse_state(group_arr.visibility_plugins);
+                document.getElementById('plugins_visibility_cb').value = group_id.value;
+
+                document.getElementById('show_users_cb').checked = parse_state(group_arr.show_users);
+                document.getElementById('show_users_cb').value = group_id.value;
+
+                document.getElementById('create_users_cb').checked = parse_state(group_arr.create_users);
+                document.getElementById('create_users_cb').value = group_id.value;
+
+                document.getElementById('remove_users_cb').checked = parse_state(group_arr.remove_users);
+                document.getElementById('remove_users_cb').value = group_id.value;
+
+                document.getElementById('edit_users_cb').checked = parse_state(group_arr.edit_users);
+                document.getElementById('edit_users_cb').value = group_id.value;
+
+                document.getElementById('show_groups_cb').checked = parse_state(group_arr.show_groups);
+                document.getElementById('show_groups_cb').value = group_id.value;
+
+                document.getElementById('create_groups_cb').checked = parse_state(group_arr.create_groups);
+                document.getElementById('create_groups_cb').value = group_id.value;
+
+                document.getElementById('remove_groups_cb').checked = parse_state(group_arr.remove_groups);
+                document.getElementById('remove_groups_cb').value = group_id.value;
+
+                document.getElementById('edit_groups_cb').checked = parse_state(group_arr.edit_groups);
+                document.getElementById('edit_groups_cb').value = group_id.value;
+
+                document.getElementById('groupname').innerHTML = group_arr.name;
+                edit_frame.style.opacity = "1";
+                edit_frame.style.visibility = "visible";
+              }
+            }
+            xhttp.send(params);
+      }
+      function change_group_entry(entry){
+        alert(entry.checked);
+      }
+      function parse_state(integer){
+        if (integer == 1) {
+          return true;
+        } else {
+          return false;
+        }
       }
     </script>
     <?php
