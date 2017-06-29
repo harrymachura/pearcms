@@ -138,7 +138,7 @@ if (isset($_GET['search'])) {
         edit_frame.style.visibility = "hidden";
       }
       function open_group_edit(group_id){
-        var xhttp = new XMLHttpRequest();
+            var xhttp = new XMLHttpRequest();
             var url = "classes/group_function.php";
             var params = "group_data=" + group_id.value;
               xhttp.open("POST", url, true);
@@ -216,7 +216,15 @@ if (isset($_GET['search'])) {
             xhttp.send(params);
       }
       function change_group_entry(entry){
-        alert(entry.checked);
+        var xhttp = new XMLHttpRequest();
+        var url = "classes/group_function.php";
+        var params = "change_data=" + entry.value + "&state=" + entry.checked + "&id=" + entry.id;
+        xhttp.open("POST", url, true);
+        //Send the proper header information along with the request
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.setRequestHeader("Content-length", params.length);
+        xhttp.setRequestHeader("Connection", "close");
+        xhttp.send(params);
       }
       function parse_state(integer){
         if (integer == 1) {
